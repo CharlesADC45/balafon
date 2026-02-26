@@ -29,17 +29,15 @@ export default function Navbar() {
       ].join(" ")}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <Link href="#top" className="flex items-center gap-2">
+        <Link href="#top" className="flex items-center">
           <Image
-            src="/images/balafon-mark.svg"
+            src="/images/balafon-logo.png"
             alt="BALAFON"
-            width={28}
-            height={28}
+            width={132}
+            height={46}
             priority
+            className="h-8 w-auto sm:h-9"
           />
-          <span className="text-sm font-semibold tracking-wide text-zinc-950 dark:text-zinc-50">
-            BALAFON
-          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navigation">

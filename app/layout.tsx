@@ -13,16 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BALAFON — Observabilité & gestion IT",
+  title: "BALAFON - Observabilite et gestion IT",
   description:
-    "BALAFON est une solution digitale professionnelle pour superviser, sécuriser et optimiser vos systèmes informatiques. Demandez une démo.",
+    "BALAFON est une solution digitale professionnelle pour superviser, securiser et optimiser vos systemes informatiques. Demandez une demo.",
   applicationName: "BALAFON",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   keywords: [
     "BALAFON",
-    "observabilité",
+    "observabilite",
     "monitoring",
     "gestion IT",
-    "sécurité",
+    "securite",
     "alertes",
     "Africa Digital Connect",
   ],

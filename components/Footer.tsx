@@ -5,11 +5,14 @@ export default function Footer() {
     <footer className="border-t border-zinc-200/70 bg-white py-12 dark:border-zinc-800/70 dark:bg-zinc-950">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:px-6 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-2">
-            <Image src="/images/balafon-mark.svg" alt="BALAFON" width={28} height={28} />
-            <span className="text-sm font-semibold tracking-wide text-zinc-950 dark:text-zinc-50">
-              BALAFON
-            </span>
+          <div className="flex items-center">
+            <Image
+              src="/images/balafon-logo.png"
+              alt="BALAFON"
+              width={150}
+              height={52}
+              className="h-10 w-auto"
+            />
           </div>
           <p className="mt-3 max-w-sm text-sm leading-6 text-zinc-600 dark:text-zinc-300">
             Plateforme d’observabilité et de gestion IT pour gagner du temps, réduire les
