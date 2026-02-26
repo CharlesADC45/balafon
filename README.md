@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BALAFON – Landing Page Officielle
 
-## Getting Started
+## 📌 Présentation
 
-First, run the development server:
+BALAFON est une landing page moderne développée avec Next.js, conçue pour présenter une solution digitale professionnelle et permettre aux entreprises de demander une démonstration.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+L’objectif principal est de créer une interface claire, performante et orientée conversion.
+
+---
+
+## 🚀 Objectifs du projet
+
+* Présenter les produits et services BALAFON
+* Mettre en valeur la proposition de valeur
+* Géner des demandes de démonstration
+* Offrir une expérience utilisateur fluide et moderne
+* Garantir de hautes performances (SEO + rapidité)
+
+---
+
+## 🛠️ Stack Technique
+
+* **Next.js (App Router)**
+* **TypeScript**
+* **Tailwind CSS**
+* **Framer Motion (animations)**
+* Optimisation via `next/image`
+
+---
+
+## 📂 Structure du Projet
+
+```
+my-next-app
+│
+├── app/
+│   ├── layout.tsx
+│   ├── page.tsx
+│
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── Products.tsx
+│   ├── Features.tsx
+│   ├── CTA.tsx
+│   └── Footer.tsx
+│
+├── public/
+│   └── images/
+│
+├── styles/
+│   └── globals.css
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧠 Architecture
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Le projet utilise l’App Router de Next.js pour une meilleure organisation et évolutivité.
 
-## Learn More
+* `app/` → Gestion du routing
+* `components/` → Composants UI réutilisables
+* `public/` → Assets statiques
+* `styles/` → Styles globaux
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Fonctionnalités principales
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Navbar responsive avec bouton CTA
+* Section Hero avec animation
+* Présentation des produits
+* Section avantages
+* Call-to-Action final
+* Design responsive (mobile-first)
+* Animations fluides via Framer Motion
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚡ Performance
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Optimisation des images
+* Lazy loading
+* Structure SEO-friendly
+* Code modulaire et maintenable
+
+---
+
+## 📈 Évolution future
+
+Ce projet est conçu pour évoluer vers :
+
+* Une plateforme SaaS complète
+* Intégration d’un système de connexion
+* Dashboard utilisateur
+* API backend
+
+---
+
+## 🖥️ Installation
+
+```bash
+npm install
+npm run dev
+```
+
+Le projet sera accessible sur :
+
+```
+http://localhost:3000
+```
+
+---
+
+## 📬 Contact
+
+Pour toute demande d’information ou de démonstration, veuillez utiliser le bouton "Demander une démo" sur la page principale.
+
+---
+
+## 📄 Licence
+
+Projet développé par l’équipe BALAFON.
+
