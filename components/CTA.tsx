@@ -1,94 +1,83 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
 
-const bullets = [
-  "Dashboard personnalisable & alertes proactives",
-  "Indicateurs (disponibilité, SLA, performances)",
-  "Intégration avec vos outils existants",
-  "Réduire les interruptions et améliorer la disponibilité",
-];
-
 export default function CTA() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="demo" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
       <motion.div
-        variants={staggerChildren(0.10)}
+        variants={staggerChildren(0.1)}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.3 }}
-        className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 sm:p-10"
+        viewport={{ once: true, amount: 0.35 }}
+        className="relative overflow-hidden rounded-[26px] bg-[rgb(7,76,108)] px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14"
       >
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute -left-16 -top-16 h-56 w-56 rounded-full bg-[rgb(15,110,110)]/12 blur-3xl" />
-          <div className="absolute -bottom-16 -right-16 h-56 w-56 rounded-full bg-[rgb(192,122,100)]/12 blur-3xl" />
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,_rgb(15,110,110,0.33),_transparent_45%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_84%_82%,_rgb(192,122,100,0.22),_transparent_40%)]" />
+          <motion.svg
+            aria-hidden
+            viewBox="0 0 760 460"
+            className="absolute -right-20 -top-6 hidden h-[130%] w-[68%] md:block"
+            animate={shouldReduceMotion ? { opacity: 0.8 } : { x: [0, 8, 0], y: [0, -6, 0] }}
+            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <g fill="none" stroke="rgb(10 191 171 / 0.48)" strokeWidth="1.6">
+              <path d="M110 30 290 112 110 194 -70 112Z" />
+              <path d="M290 112 470 30 650 112 470 194Z" />
+              <path d="M470 194 650 112 830 194 650 276Z" />
+              <path d="M110 194 290 276 110 358 -70 276Z" />
+              <path d="M290 276 470 194 650 276 470 358Z" />
+              <path d="M470 358 650 276 830 358 650 440Z" />
+              <path d="M110 30V194M290 112V276M470 30V194M650 112V276M470 194V358M650 276V440" />
+            </g>
+          </motion.svg>
         </div>
 
-        <motion.h2
-          variants={fadeIn("up", 0)}
-          className="text-balance text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl"
-        >
-          Prêt à voir BALAFON en action ?
-        </motion.h2>
-        <motion.p
-          variants={fadeIn("up", 0.05)}
-          className="mt-4 max-w-2xl text-pretty text-lg leading-8 text-zinc-600 dark:text-zinc-300"
-        >
-          Demandez une démo rapide. Nous vous montrons comment BALAFON automatise, surveille et
-          optimise — pour vous laisser vous concentrer sur ce que vous faites de mieux.
-        </motion.p>
-
-        <motion.ul
-          variants={fadeIn("up", 0.08)}
-          className="mt-8 grid gap-3 text-sm text-zinc-700 dark:text-zinc-300 sm:grid-cols-2"
-        >
-          {bullets.map((b) => (
-            <li key={b} className="flex items-start gap-3">
-              <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[rgb(15,110,110)]/12 text-[rgb(15,110,110)]">
-                <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
-                  <path
-                    d="M6 12.5 10 16.5 18 8.5"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-              <span>{b}</span>
-            </li>
-          ))}
-        </motion.ul>
-
-        <motion.div
-          variants={fadeIn("up", 0.10)}
-          className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
-        >
-          <a
-            href="https://balafon.io"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex h-11 items-center justify-center rounded-full bg-[rgb(15,110,110)] px-6 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[rgb(12,92,92)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(15,110,110)] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950"
+        <div className="relative z-10 max-w-2xl">
+          <motion.h2
+            variants={fadeIn("up", 0)}
+            className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl"
           >
-            Demander une démo
-          </a>
-          <a
-            href="#produits"
-            className="inline-flex h-11 items-center justify-center rounded-full border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-900 transition-colors hover:bg-[#a67b6b] hover:text-white dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-[#a67b6b] dark:hover:text-white"
-          >
-            Revoir les produits
-          </a>
-        </motion.div>
+            Pret a simplifier votre travail avec une informatique unifiee ?
+          </motion.h2>
 
-        <motion.p
-          variants={fadeIn("up", 0.12)}
-          className="mt-6 text-xs leading-6 text-zinc-500 dark:text-zinc-400"
-        >
-          En demandant une démo, vous acceptez d’être recontacté au sujet de BALAFON.
-        </motion.p>
+          <motion.p
+            variants={fadeIn("up", 0.05)}
+            className="mt-4 max-w-xl text-base leading-7 text-white/78 sm:text-lg"
+          >
+            BALAFON centralise la supervision, automatise les actions et donne une vision claire a
+            votre equipe en quelques minutes.
+          </motion.p>
+
+          <motion.div
+            variants={fadeIn("up", 0.1)}
+            className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
+          >
+            <a
+              href="https://balafon.io"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-[rgb(27,229,171)] px-7 text-base font-semibold text-[rgb(6,70,97)] shadow-[0_10px_24px_rgba(4,33,46,0.28)] transition-transform hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(7,76,108)]"
+            >
+              Demander une demo
+            </a>
+            <a
+              href="#produits"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-[rgb(10,191,171)]/85 bg-transparent px-7 text-base font-semibold text-white transition-colors hover:bg-[rgb(10,191,171)]/14 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(10,191,171)] focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(7,76,108)]"
+            >
+              Decouvrir les demos
+            </a>
+          </motion.div>
+
+          <motion.p variants={fadeIn("up", 0.14)} className="mt-5 text-sm text-white/65">
+            Reponse moyenne en moins de 24h.
+          </motion.p>
+        </div>
       </motion.div>
     </section>
   );
 }
-
