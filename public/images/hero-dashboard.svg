@@ -1,0 +1,62 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aperçu de tableau de bord BALAFON">
+  <defs>
+    <linearGradient id="bg" x1="1200" y1="0" x2="0" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F6E6E" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#C07A64" stop-opacity="0.10"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F7FAFA"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#0B1220" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="800" rx="48" fill="url(#bg)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="110" y="90" width="980" height="620" rx="28" fill="url(#card)" stroke="#E6EFEF" stroke-width="2"/>
+
+    <!-- Top bar -->
+    <rect x="150" y="130" width="900" height="56" rx="16" fill="#F2F7F7"/>
+    <circle cx="180" cy="158" r="8" fill="#C07A64"/>
+    <circle cx="206" cy="158" r="8" fill="#0F6E6E"/>
+    <circle cx="232" cy="158" r="8" fill="#94A3B8"/>
+    <rect x="760" y="146" width="270" height="24" rx="12" fill="#E7EFEF"/>
+
+    <!-- Left nav -->
+    <rect x="150" y="206" width="210" height="470" rx="18" fill="#F7FAFA" stroke="#E6EFEF"/>
+    <rect x="172" y="236" width="166" height="16" rx="8" fill="#0F6E6E" fill-opacity="0.20"/>
+    <rect x="172" y="270" width="150" height="14" rx="7" fill="#CBD5E1"/>
+    <rect x="172" y="302" width="158" height="14" rx="7" fill="#CBD5E1"/>
+    <rect x="172" y="334" width="132" height="14" rx="7" fill="#CBD5E1"/>
+    <rect x="172" y="366" width="146" height="14" rx="7" fill="#CBD5E1"/>
+
+    <!-- Main cards -->
+    <rect x="382" y="206" width="668" height="180" rx="22" fill="#FFFFFF" stroke="#E6EFEF"/>
+    <rect x="412" y="236" width="250" height="18" rx="9" fill="#0B1220" fill-opacity="0.12"/>
+    <rect x="412" y="266" width="330" height="14" rx="7" fill="#94A3B8" fill-opacity="0.55"/>
+    <rect x="412" y="292" width="300" height="14" rx="7" fill="#94A3B8" fill-opacity="0.45"/>
+
+    <rect x="412" y="322" width="608" height="28" rx="14" fill="#0F6E6E" fill-opacity="0.14"/>
+    <rect x="412" y="322" width="430" height="28" rx="14" fill="#0F6E6E" fill-opacity="0.28"/>
+
+    <rect x="382" y="406" width="324" height="270" rx="22" fill="#FFFFFF" stroke="#E6EFEF"/>
+    <rect x="412" y="438" width="168" height="16" rx="8" fill="#0B1220" fill-opacity="0.12"/>
+    <rect x="412" y="468" width="260" height="12" rx="6" fill="#94A3B8" fill-opacity="0.50"/>
+    <rect x="412" y="492" width="238" height="12" rx="6" fill="#94A3B8" fill-opacity="0.38"/>
+    <circle cx="542" cy="580" r="70" fill="#0F6E6E" fill-opacity="0.18"/>
+    <path d="M542 510 A70 70 0 0 1 608 616 L542 580 Z" fill="#C07A64" fill-opacity="0.35"/>
+    <path d="M608 616 A70 70 0 0 1 542 650 L542 580 Z" fill="#0F6E6E" fill-opacity="0.30"/>
+
+    <rect x="726" y="406" width="324" height="270" rx="22" fill="#FFFFFF" stroke="#E6EFEF"/>
+    <rect x="756" y="438" width="190" height="16" rx="8" fill="#0B1220" fill-opacity="0.12"/>
+    <rect x="756" y="472" width="264" height="14" rx="7" fill="#0F6E6E" fill-opacity="0.22"/>
+    <rect x="756" y="502" width="238" height="14" rx="7" fill="#0F6E6E" fill-opacity="0.16"/>
+    <rect x="756" y="532" width="210" height="14" rx="7" fill="#0F6E6E" fill-opacity="0.12"/>
+    <rect x="756" y="578" width="264" height="44" rx="16" fill="#C07A64" fill-opacity="0.18"/>
+    <rect x="780" y="592" width="186" height="16" rx="8" fill="#C07A64" fill-opacity="0.45"/>
+  </g>
+</svg>
+

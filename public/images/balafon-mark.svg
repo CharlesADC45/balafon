@@ -1,0 +1,13 @@
+<svg width="520" height="520" viewBox="0 0 520 520" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo BALAFON">
+  <defs>
+    <linearGradient id="g" x1="80" y1="70" x2="440" y2="450" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F6E6E"/>
+      <stop offset="1" stop-color="#C07A64"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="40" width="440" height="440" rx="120" fill="url(#g)" opacity="0.12"/>
+  <path d="M124 312c0-78 60-140 136-140 76 0 136 62 136 140" stroke="url(#g)" stroke-width="28" stroke-linecap="round"/>
+  <path d="M210 318c0-30 22-54 50-54s50 24 50 54" stroke="#0F6E6E" stroke-width="28" stroke-linecap="round" opacity="0.75"/>
+  <circle cx="260" cy="356" r="12" fill="#C07A64"/>
+</svg>
+
