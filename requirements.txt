@@ -1,0 +1,23 @@
+# BALAFON - Project Requirements (Node.js)
+# Preferred install command:
+# npm ci
+
+# System requirements
+node>=20
+npm>=10
+
+# Runtime dependencies
+next@16.1.6
+react@19.2.3
+react-dom@19.2.3
+framer-motion@12.34.3
+
+# Dev dependencies
+typescript@^5
+tailwindcss@^4
+@tailwindcss/postcss@^4
+eslint@^9
+eslint-config-next@16.1.6
+@types/node@^20
+@types/react@^19
+@types/react-dom@^19
