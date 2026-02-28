@@ -7,7 +7,7 @@ const features = [
   {
     title: "Simplicité",
     description:
-      "Une expérience claire, des vues utiles, des actions rapides. Vos équipes restent concentrées sur l’essentiel.",
+      "Une expérience claire, des vues utiles et des actions rapides. Vos équipes restent concentrées sur l essentiel.",
   },
   {
     title: "Performance",
@@ -17,7 +17,7 @@ const features = [
   {
     title: "Centralisation",
     description:
-      "Unifiez la visibilité sur postes, serveurs, applications, réseau et cloud — sans multiplier les outils.",
+      "Unifiez la visibilité sur postes, serveurs, applications, réseau et cloud sans multiplier les outils.",
   },
   {
     title: "Sécurité",
@@ -34,35 +34,32 @@ export default function Features() {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
-          variants={staggerChildren(0.10)}
+          variants={staggerChildren(0.1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
           <motion.p
             variants={fadeIn("up", 0)}
-            className="text-sm font-semibold tracking-wide text-[rgb(15,110,110)]"
+            className="text-lg font-semibold tracking-wide text-[rgb(15,110,110)] sm:text-xl"
           >
-            Pourquoi BALAFON
+            Pourquoi BALAFON?
           </motion.p>
           <motion.h2
             variants={fadeIn("up", 0.05)}
             className="mt-3 text-balance text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl"
           >
-            Gagnez du temps, économisez de l’argent, optimisez pour l’avenir
+            Gagnez du temps, économisez de l'argent et optimisez pour le futur
           </motion.h2>
           <motion.p
-            variants={fadeIn("up", 0.10)}
+            variants={fadeIn("up", 0.1)}
             className="mt-4 max-w-2xl text-pretty text-lg leading-8 text-zinc-600 dark:text-zinc-300"
           >
-            Une meilleure gestion signifie moins de temps d’arrêt, moins de problèmes et donc moins
-            de coûts cachés — avec une approche modulaire et orientée résultats.
+            Une meilleure gestion signifie moins de temps d'arrêt, moins de problèmes et donc moins
+            de coûts cachés, avec une approche modulaire et orientée résultats.
           </motion.p>
 
-          <motion.div
-            variants={fadeIn("up", 0.12)}
-            className="mt-10 grid gap-4 sm:grid-cols-2"
-          >
+          <motion.div variants={fadeIn("up", 0.12)} className="mt-10 grid gap-5 sm:grid-cols-2">
             {features.map((f, idx) => (
               <motion.article
                 key={f.title}
@@ -88,4 +85,3 @@ export default function Features() {
     </section>
   );
 }
-

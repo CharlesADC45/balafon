@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -24,13 +25,13 @@ export default function Footer() {
           <h3 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">Contact</h3>
           <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
             <li>
-              <span className="font-medium text-zinc-900 dark:text-zinc-100">Téléphone:</span>{" "}
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">Téléphone :</span>{" "}
               <a className="hover:underline" href="tel:+2250556225555">
                 +225 05 56 22 55 55
               </a>
             </li>
             <li>
-              <span className="font-medium text-zinc-900 dark:text-zinc-100">Site:</span>{" "}
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">Site :</span>{" "}
               <a
                 className="hover:underline"
                 href="https://www.africadigitalconnect.net"
@@ -41,7 +42,7 @@ export default function Footer() {
               </a>
             </li>
             <li className="leading-6">
-              <span className="font-medium text-zinc-900 dark:text-zinc-100">Adresse:</span>{" "}
+              <span className="font-medium text-zinc-900 dark:text-zinc-100">Adresse :</span>{" "}
               Cocody, II Plateaux, Rue J47, 01 BP 13551, Abidjan 01, Côte d’Ivoire
             </li>
           </ul>
@@ -51,19 +52,24 @@ export default function Footer() {
           <h3 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">Informations</h3>
           <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
             <li>
-              <a className="hover:underline" href="#produits">
+              <Link className="hover:underline" href="/#produits">
                 Produits
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="hover:underline" href="#pourquoi">
+              <Link className="hover:underline" href="/#pourquoi">
                 Pourquoi BALAFON
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="hover:underline" href="#demo">
+              <Link className="hover:underline" href="/about">
+                À propos
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:underline" href="/#demo">
                 Demander une démo
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -78,4 +84,3 @@ export default function Footer() {
     </footer>
   );
 }
-

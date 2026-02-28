@@ -17,7 +17,10 @@ export default function ContactPage() {
         <div className="mt-10 grid gap-4">
           <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
             <h2 className="text-sm font-semibold">Téléphone</h2>
-            <a className="mt-2 inline-block text-sm text-zinc-600 hover:underline dark:text-zinc-300" href="tel:+2250556225555">
+            <a
+              className="mt-2 inline-block text-sm text-zinc-600 hover:underline dark:text-zinc-300"
+              href="tel:+2250556225555"
+            >
               +225 05 56 22 55 55
             </a>
           </div>
@@ -46,4 +49,3 @@ export default function ContactPage() {
     </div>
   );
 }
-
