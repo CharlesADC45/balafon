@@ -89,7 +89,7 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative mx-auto flex min-h-[75vh] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-28">
+      <div className="relative mx-auto flex min-h-[85vh] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-28">
         <motion.div variants={staggerChildren(0.1)} initial="hidden" animate="show">
           <motion.p
             variants={fadeIn("up", 0)}
