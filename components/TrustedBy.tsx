@@ -25,8 +25,8 @@ const partners: Partner[] = [
     fallback: "/images/trusted/trust_fdfp.png",
   },
   {
-    name: "BNETD",
-    logo: "https://www.bnetd.ci/logo/logo_bnetd.jpg",
+    name: "CNPS",
+    logo: "https://www.cnps.ci/wp-content/uploads/2020/07/LOGO-CNPSnew.jpeg",
   },
   {
     name: "Société Générale Côte d'Ivoire",
@@ -34,8 +34,8 @@ const partners: Partner[] = [
     fallback: "/images/trusted/trust_sgci.png",
   },
   {
-    name: "CIPREL",
-    logo: "https://ciprel.ci/wp-content/uploads/2023/11/logo.png",
+    name: "GS2E",
+    logo: "https://gs2e.ci/wp-content/uploads/2024/04/cropped-cropped-gs2eci_logo-e1713898762129.jpeg",
     fallback: "/images/trusted/logos_block.png",
   },
 ];
