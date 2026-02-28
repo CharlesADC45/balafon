@@ -1,124 +1,98 @@
-# BALAFON – Landing Page Officielle
+﻿# BALAFON Landing Page
 
-## 📌 Présentation
+Landing page BALAFON construite avec Next.js (App Router), TypeScript, Tailwind CSS v4 et Framer Motion.
 
-BALAFON est une landing page moderne développée avec Next.js, conçue pour présenter une solution digitale professionnelle et permettre aux entreprises de demander une démonstration.
+## Objectif
 
-L’objectif principal est de créer une interface claire, performante et orientée conversion.
+Ce projet presente BALAFON: une plateforme de supervision, observabilite, securite et gestion IT proposee par Africa Digital Connect.
 
----
+## Prerequis
 
-## 🚀 Objectifs du projet
+- Node.js 20+
+- npm 10+
+- Git
 
-* Présenter les produits et services BALAFON
-* Mettre en valeur la proposition de valeur
-* Géner des demandes de démonstration
-* Offrir une expérience utilisateur fluide et moderne
-* Garantir de hautes performances (SEO + rapidité)
-
----
-
-## 🛠️ Stack Technique
-
-* **Next.js (App Router)**
-* **TypeScript**
-* **Tailwind CSS**
-* **Framer Motion (animations)**
-* Optimisation via `next/image`
-
----
-
-## 📂 Structure du Projet
-
-```
-my-next-app
-│
-├── app/
-│   ├── layout.tsx
-│   ├── page.tsx
-│
-├── components/
-│   ├── Navbar.tsx
-│   ├── Hero.tsx
-│   ├── Products.tsx
-│   ├── Features.tsx
-│   ├── CTA.tsx
-│   └── Footer.tsx
-│
-├── public/
-│   └── images/
-│
-├── styles/
-│   └── globals.css
-```
-
----
-
-## 🧠 Architecture
-
-Le projet utilise l’App Router de Next.js pour une meilleure organisation et évolutivité.
-
-* `app/` → Gestion du routing
-* `components/` → Composants UI réutilisables
-* `public/` → Assets statiques
-* `styles/` → Styles globaux
-
----
-
-## 🎨 Fonctionnalités principales
-
-* Navbar responsive avec bouton CTA
-* Section Hero avec animation
-* Présentation des produits
-* Section avantages
-* Call-to-Action final
-* Design responsive (mobile-first)
-* Animations fluides via Framer Motion
-
----
-
-## ⚡ Performance
-
-* Optimisation des images
-* Lazy loading
-* Structure SEO-friendly
-* Code modulaire et maintenable
-
----
-
-## 📈 Évolution future
-
-Ce projet est conçu pour évoluer vers :
-
-* Une plateforme SaaS complète
-* Intégration d’un système de connexion
-* Dashboard utilisateur
-* API backend
-
----
-
-## 🖥️ Installation
+Verification rapide:
 
 ```bash
+node -v
+npm -v
+git --version
+```
+
+## Installation
+
+```bash
+git clone <url-du-repo>
+cd my-next-app
 npm install
+```
+
+## Lancement local
+
+```bash
 npm run dev
 ```
 
-Le projet sera accessible sur :
+Puis ouvrir `http://localhost:3000`.
 
+## Scripts disponibles
+
+- `npm run dev`: demarrage en mode developpement
+- `npm run lint`: verification ESLint
+- `npm run build`: build production
+- `npm run start`: lancement du build
+
+## Stack technique
+
+- Next.js `16.1.6`
+- React `19.2.3`
+- TypeScript `^5`
+- Tailwind CSS `^4`
+- Framer Motion `^12.34.3`
+- ESLint `^9` + `eslint-config-next`
+
+## Pages
+
+- `/`: page principale
+- `/about`: page A propos (inclut les informations cles BALAFON)
+- `/contact`: page contact
+
+## Sections de la page d accueil
+
+- `Navbar`
+- `Hero`
+- `TrustedBy` (logos clients/partenaires)
+- `Products` (cartes avec scroll horizontal + controles)
+- `Features`
+- `CTA`
+- `Footer`
+
+## Arborescence utile
+
+```text
+app/                  Routes et layout
+components/           Composants UI
+animations/           Variants Framer Motion reutilisables
+styles/               Styles globaux (Tailwind + CSS)
+libs/                 Utilitaires
+public/images/        Logos et assets visuels
 ```
-http://localhost:3000
-```
 
----
+## Logos partenaires
 
-## 📬 Contact
+La section `TrustedBy` utilise:
 
-Pour toute demande d’information ou de démonstration, veuillez utiliser le bouton "Demander une démo" sur la page principale.
+- des logos distants (URLs officielles)
+- des fallbacks locaux dans `public/images/trusted`
 
----
+Si un logo distant ne charge pas, un fallback local est utilise quand disponible.
 
-## 📄 Licence
+## Favicon et logo
 
-Projet développé par l’équipe BALAFON.
+- Favicon: `public/favicon.svg` (reference aussi dans `app/icon.svg`)
+- Logo principal: `public/images/balafon-logo.png`
 
+## Documentation complementaire
+
+Consultez `DOCS.md` pour la documentation technique detaillee (architecture, composants, maintenance, personnalisation).

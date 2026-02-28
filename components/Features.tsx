@@ -1,28 +1,28 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
 
 const features = [
   {
-    title: "Simplicité",
+    title: "Simplicit\u00e9",
     description:
-      "Une expérience claire, des vues utiles et des actions rapides. Vos équipes restent concentrées sur l essentiel.",
+      "Une exp\u00e9rience claire, des vues utiles et des actions rapides. Vos \u00e9quipes restent concentr\u00e9es sur l'essentiel.",
   },
   {
     title: "Performance",
     description:
-      "Réduisez les heures perdues à gérer des incidents grâce à une supervision proactive et des indicateurs fiables.",
+      "R\u00e9duisez les heures perdues \u00e0 g\u00e9rer des incidents gr\u00e2ce \u00e0 une supervision proactive et des indicateurs fiables.",
   },
   {
     title: "Centralisation",
     description:
-      "Unifiez la visibilité sur postes, serveurs, applications, réseau et cloud sans multiplier les outils.",
+      "Unifiez la visibilit\u00e9 sur postes, serveurs, applications, r\u00e9seau et cloud sans multiplier les outils.",
   },
   {
-    title: "Sécurité",
+    title: "S\u00e9curit\u00e9",
     description:
-      "Contrôles, alertes et bonnes pratiques pour sécuriser vos environnements et mieux anticiper les risques.",
+      "Contr\u00f4les, alertes et bonnes pratiques pour s\u00e9curiser vos environnements et mieux anticiper les risques.",
   },
 ];
 
@@ -49,14 +49,14 @@ export default function Features() {
             variants={fadeIn("up", 0.05)}
             className="mt-3 text-balance text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl"
           >
-            Gagnez du temps, économisez de l'argent et optimisez pour le futur
+            {"Gagnez du temps, \u00e9conomisez de l'argent et optimisez pour le futur"}
           </motion.h2>
           <motion.p
             variants={fadeIn("up", 0.1)}
             className="mt-4 max-w-2xl text-pretty text-lg leading-8 text-zinc-600 dark:text-zinc-300"
           >
-            Une meilleure gestion signifie moins de temps d'arrêt, moins de problèmes et donc moins
-            de coûts cachés, avec une approche modulaire et orientée résultats.
+            {"Une meilleure gestion signifie moins de temps d'arr\u00eat, moins de probl\u00e8mes et donc moins"}
+            {" de co\u00fbts cach\u00e9s, avec une approche modulaire et orient\u00e9e r\u00e9sultats."}
           </motion.p>
 
           <motion.div variants={fadeIn("up", 0.12)} className="mt-10 grid gap-5 sm:grid-cols-2">
@@ -85,3 +85,4 @@ export default function Features() {
     </section>
   );
 }
+

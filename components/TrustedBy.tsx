@@ -42,13 +42,13 @@ const partners: Partner[] = [
 
 export default function TrustedBy() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16">
+    <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
       <motion.div
         variants={staggerChildren(0.08)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 sm:p-8"
+        className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950 sm:p-10"
       >
         <motion.p
           variants={fadeIn("up", 0)}
@@ -70,7 +70,7 @@ export default function TrustedBy() {
           {partners.map((p) => (
             <article
               key={p.name}
-              className="flex min-h-24 items-center gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900/30"
+              className="flex min-h-28 items-center gap-3 rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-4 dark:border-zinc-800 dark:bg-zinc-900/30"
             >
               <img
                 src={p.logo}

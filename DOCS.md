@@ -1,24 +1,26 @@
-# BALAFON Landing Page
+﻿# Documentation technique BALAFON
 
-Landing page BALAFON construite avec Next.js (App Router), TypeScript, Tailwind CSS et Framer Motion.
+Ce document decrit l etat actuel du projet, son architecture, ses composants, et les points de maintenance pour l equipe.
 
-## 1. Prerequis
+## 1. Vue d ensemble
 
-Installe ces outils avant de lancer le projet:
+Application web Next.js App Router servant de vitrine BALAFON, avec animations UI Framer Motion, styles Tailwind CSS v4, et contenus majoritairement en francais.
 
-- Node.js `20+` (recommande: derniere LTS)
-- npm `10+` (installe avec Node.js)
+Objectifs:
+
+- Presenter la proposition de valeur BALAFON
+- Mettre en avant les domaines de competence et references clients
+- Faciliter la prise de contact (CTA + page Contact)
+
+## 2. Prerequis et installation
+
+### 2.1 Prerequis
+
+- Node.js 20+
+- npm 10+
 - Git
 
-Verification rapide:
-
-```bash
-node -v
-npm -v
-git --version
-```
-
-## 2. Installation
+### 2.2 Installation
 
 ```bash
 git clone <url-du-repo>
@@ -26,80 +28,201 @@ cd my-next-app
 npm install
 ```
 
-## 3. Lancer le projet en local
+### 2.3 Lancement
 
 ```bash
 npm run dev
 ```
 
-Puis ouvre:
+Application disponible sur `http://localhost:3000`.
 
-`http://localhost:3000`
+## 3. Scripts
 
-## 4. Commandes utiles
+- `npm run dev`: developpement
+- `npm run lint`: lint
+- `npm run build`: build production
+- `npm run start`: execution production
 
-- Dev: `npm run dev`
-- Lint: `npm run lint`
-- Build production: `npm run build`
-- Start production (apres build): `npm run start`
+## 4. Stack et dependances
 
-## 5. Stack et outils utilises
+### Runtime
 
-- Framework: Next.js `16.1.6` (App Router)
-- UI: React `19.2.3`
-- Langage: TypeScript
-- Styling: Tailwind CSS `v4`
-- Animations: Framer Motion `12.34.3`
-- Qualite code: ESLint `v9` + `eslint-config-next`
+- `next@16.1.6`
+- `react@19.2.3`
+- `react-dom@19.2.3`
+- `framer-motion@12.34.3`
 
-## 6. Structure du projet
+### Developpement
+
+- `typescript@^5`
+- `tailwindcss@^4`
+- `@tailwindcss/postcss@^4`
+- `eslint@^9`
+- `eslint-config-next@16.1.6`
+- `@types/node@^20`
+- `@types/react@^19`
+- `@types/react-dom@^19`
+
+## 5. Architecture du projet
 
 ```text
-my-next-app/
-  app/                 # Pages, layout, routing (App Router)
-  components/          # Composants UI (Hero, CTA, Features, etc.)
-  animations/          # Variants Framer Motion reutilisables
-  styles/              # Styles globaux (Tailwind + CSS global)
-  public/              # Assets statiques (images, svg, icons)
-  libs/                # Utilitaires partages
+app/
+  layout.tsx
+  page.tsx
+  about/page.tsx
+  contact/page.tsx
+components/
+  Navbar.tsx
+  Hero.tsx
+  TrustedBy.tsx
+  Products.tsx
+  Features.tsx
+  CTA.tsx
+  PdfInsights.tsx
+  Footer.tsx
+animations/
+  fadeIn.ts
+styles/
+  globals.css
+public/
+  favicon.svg
+  images/
+    balafon-logo.png
+    balafon-mark.svg
+    trusted/
+libs/
+  utils.ts
 ```
 
-## 7. Workflow recommande pour les collegues
+## 6. Routage
 
-1. Creer une branche: `git checkout -b feat/ma-feature`
-2. Faire les changements
-3. Verifier le lint: `npm run lint`
-4. Commit: `git add . && git commit -m "feat: ..."`
-5. Push et ouvrir une PR
+- `/`:
+  - Navbar
+  - Hero
+  - TrustedBy
+  - Products
+  - Features
+  - CTA
+  - Footer
 
-## 8. Depannage
+- `/about`:
+  - Hero textuel A propos
+  - blocs promesse/approche/objectif
+  - `PdfInsights`
+  - Footer
 
-### PowerShell bloque `npm` (Windows)
+- `/contact`:
+  - informations de contact
+  - Footer
 
-Si tu vois une erreur `npm.ps1 cannot be loaded because running scripts is disabled`:
+## 7. Composants principaux
 
-- Option rapide (sans changer la policy):
+### 7.1 Navbar
+
+- logo BALAFON
+- liens: Produits, Pourquoi BALAFON, A propos
+- bouton Demander une demo
+- effet sticky avec fond/ombre au scroll
+
+### 7.2 Hero
+
+- texte centre
+- fond anime (blobs/flou) inspire d une direction visuelle moderne
+- CTA: Tous les produits, Contactez-nous
+- animations conditionnees par `useReducedMotion`
+
+### 7.3 TrustedBy
+
+- logos de references (Orange CI, Port Autonome, FDFP, BNETD, SGCI, CIPREL)
+- chargement logos via URL externe
+- fallback local si erreur de chargement (`public/images/trusted/*`)
+
+### 7.4 Products
+
+- section cartes avec design marque BALAFON
+- scroll horizontal de cartes
+- navigation avec boutons precedent/suivant + points
+- contenu produits adapte BALAFON (pas N-able)
+
+### 7.5 Features
+
+- section Pourquoi BALAFON
+- 4 blocs: simplicite, performance, centralisation, securite
+
+### 7.6 CTA
+
+- bloc final colore en theme BALAFON
+- bouton principal Demander une demo
+- suppression du second bouton
+
+### 7.7 PdfInsights
+
+- section detaillee issue des informations du document BALAFON
+- services cles
+- modules plateforme
+- domaines de competences
+- resultats attendus
+
+## 8. Animations
+
+Le fichier `animations/fadeIn.ts` centralise:
+
+- `fadeIn(direction, delay, duration)`
+- `staggerChildren(stagger, delayChildren)`
+
+Les composants utilisent ces variants pour homogeniser les transitions d'entree.
+
+## 9. Styles et theming
+
+Dans `styles/globals.css`:
+
+- variables de base: `--brand` et `--accent`
+- mode clair/sombre via media query
+- comportement de scroll fluide
+
+Couleurs dominantes BALAFON:
+
+- teinte principale: `rgb(15,110,110)`
+- accent secondaire: `rgb(192,122,100)`
+
+## 10. Assets et branding
+
+- logo principal: `public/images/balafon-logo.png`
+- favicon: `public/favicon.svg` + `app/icon.svg`
+- fallbacks logos partenaires: `public/images/trusted/`
+
+## 11. Notes de maintenance
+
+### 11.1 Encodage texte
+
+Si des caracteres accentues apparaissent mal (ex: `Ã©`), verifier:
+
+- encodage UTF-8 des fichiers
+- terminal/editeur configure en UTF-8
+
+### 11.2 Logos distants
+
+Certaines images viennent de domaines externes; si indisponibles, prevoir un fallback local supplementaire.
+
+### 11.3 Bonnes pratiques
+
+Avant merge:
 
 ```bash
-cmd /c npm run dev
-cmd /c npm run lint
+npm run lint
+npm run build
 ```
 
-- Option permanente (PowerShell admin):
+## 12. Contribution equipe
 
-```powershell
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-```
+Workflow recommande:
 
-### Port 3000 deja utilise
+1. Creer une branche `feat/...` ou `fix/...`
+2. Developper et tester localement
+3. Lancer lint/build
+4. Ouvrir une PR avec description claire des changements UI/texte
 
-Lancer sur un autre port:
+## 13. Fichier requirements.txt
 
-```bash
-npm run dev -- -p 3001
-```
-
-## 9. Notes
-
-- Ce projet ne depend pas de variables d environnement pour demarrer.
-- Si l affichage semble casse, supprime le cache navigateur et relance le serveur dev.
+Un fichier `requirements.txt` (version Node) est fourni pour reference des dependances et versions.
+L installation reelle se fait avec `npm install` (ou `npm ci` en CI).
