@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
+import Link from 'next/link'
 
 export default function CTA() {
   const shouldReduceMotion = useReducedMotion();
@@ -57,14 +58,12 @@ export default function CTA() {
             variants={fadeIn("up", 0.1)}
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <a
-              href="https://balafon.io"
-              target="_blank"
-              rel="noreferrer"
+            <Link
+              href="/demo"
               className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-[rgb(15,110,110)] shadow-[0_10px_24px_rgba(4,33,46,0.28)] transition-transform hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(15,110,110)]"
             >
               Demander une démo
-            </a>
+            </Link>
           </motion.div>
 
           <motion.p variants={fadeIn("up", 0.14)} className="mt-5 text-sm text-white/65">
