@@ -16,25 +16,25 @@ const cards: ProductCard[] = [
     title: "Monitoring 360 en temps réel",
     text: "Surveillez serveurs, réseaux, applications et postes utilisateurs depuis une vue unifiée BALAFON.",
     signature: "Équipe observabilité",
-    product: "BALAFON Monitoring",
+    product: "SERVICE Monitoring",
   },
   {
     title: "Détection avancée et alertes",
     text: "Recevez des alertes instantanées et priorisées pour agir avant l'impact métier.",
     signature: "Centre de supervision",
-    product: "BALAFON Alertes",
+    product: "SERVICE Alertes",
   },
   {
     title: "Contrôle, SLA et conformité",
     text: "Pilotez la qualité de service avec des indicateurs clairs, des rapports et des tableaux de bord adaptables.",
     signature: "Équipe gouvernance IT",
-    product: "BALAFON Contrôle",
+    product: "SERVICE Contrôle",
   },
   {
     title: "Sécurité et résilience",
     text: "Renforcez la protection des environnements critiques avec supervision continue et procédures de reprise.",
     signature: "Équipe cybersécurité",
-    product: "BALAFON Sécurité",
+    product: "SERVICE Sécurité",
   },
 ];
 
@@ -83,7 +83,7 @@ export default function Products() {
             variants={fadeIn("up", 0)}
             className="text-lg font-semibold tracking-wide text-[rgb(192,122,100)] sm:text-xl"
           >
-            Produits
+            Services
           </motion.p>
           <motion.h2
             variants={fadeIn("up", 0.05)}

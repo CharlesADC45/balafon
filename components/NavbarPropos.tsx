@@ -57,7 +57,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/#demo"
+            href="/demo"
             className="inline-flex h-10 items-center justify-center rounded-full bg-[rgb(15,110,110)] px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[rgb(12,92,92)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(15,110,110)] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950"
           >
             Demander une démo

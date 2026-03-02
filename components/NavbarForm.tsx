@@ -7,10 +7,10 @@ import { useEffect, useState } from "react";
 const navLinks = [
   { href: "/#produits", label: "Services" },
   { href: "/#pourquoi", label: "Pourquoi BALAFON" },
-  { href: "/about", label: "À propos" },
+  { href: "/about", label: "A propos" },
 ];
 
-export default function Navbar() {
+export default function NavbarForm() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function Navbar() {
       ].join(" ")}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
-        <div className="flex items-center gap-8 lg:gap-14">
+        <div className="flex items-center gap-12 lg:gap-20">
           <Link href="/#top" className="flex items-center">
             <Image
               src="/images/balafon-logo.png"
@@ -53,15 +53,6 @@ export default function Navbar() {
               </Link>
             ))}
           </nav>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Link
-            href="/#demo"
-            className="inline-flex h-10 items-center justify-center rounded-full bg-[rgb(15,110,110)] px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[rgb(12,92,92)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(15,110,110)] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950"
-          >
-            Demander une démo
-          </Link>
         </div>
       </div>
     </header>

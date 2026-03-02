@@ -1,4 +1,4 @@
-﻿import Navbar from "../../components/Navbar";
+﻿import Navbar from "../../components/NavbarPropos";
 import Footer from "../../components/Footer";
 import PdfInsights from "../../components/PdfInsights";
 
