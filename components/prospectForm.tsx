@@ -172,7 +172,7 @@ export default function ProspectForm() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor="nom" className="mb-1 block text-sm font-medium text-zinc-700">
-            Nom du representant <span className="text-red-500">*</span>
+            Nom du représentant <span className="text-red-500">*</span>
           </label>
           <input
             id="nom"
@@ -188,7 +188,7 @@ export default function ProspectForm() {
 
         <div>
           <label htmlFor="prenom" className="mb-1 block text-sm font-medium text-zinc-700">
-            Prenom du representant <span className="text-red-500">*</span>
+            Prénom du représentant <span className="text-red-500">*</span>
           </label>
           <input
             id="prenom"
@@ -221,7 +221,7 @@ export default function ProspectForm() {
 
       <div>
         <label htmlFor="telephone" className="mb-1 block text-sm font-medium text-zinc-700">
-          Telephone <span className="text-red-500">*</span>
+          Téléphone <span className="text-red-500">*</span>
         </label>
         <input
           id="telephone"

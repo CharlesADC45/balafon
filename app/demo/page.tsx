@@ -58,7 +58,7 @@ export default function DemoPage() {
 
             <div className="bg-white px-6 py-8 sm:px-9 sm:py-10 lg:col-span-7">
               <h2 className="text-2xl font-semibold text-zinc-900 sm:text-3xl">
-                Parlez-nous de votre besoin
+                Parlez-nous de vos besoins
               </h2>
               <p className="mt-2 text-sm text-zinc-500">
                 (<span className="text-red-500">*</span>) désigne les champs obligatoires.
