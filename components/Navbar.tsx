@@ -29,11 +29,11 @@ export default function Navbar() {
           : "border-transparent bg-transparent",
       ].join(" ")}
     >
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-4 sm:px-6">
         <div className="flex items-center gap-8 lg:gap-14">
           <Link href="/#top" className="flex items-center">
             <Image
-              src="/images/balafon-logo.png"
+              src="/images/balafon-logo2.svg"
               alt="BALAFON"
               width={170}
               height={58}

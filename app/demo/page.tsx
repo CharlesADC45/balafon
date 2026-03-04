@@ -18,11 +18,11 @@ export default function DemoPage() {
 
               <div className="relative z-10 flex h-full flex-col">
                 <Image
-                  src="/images/balafon-logo.png"
+                  src="/images/balafon-logo.svg"
                   alt="BALAFON"
                   width={150}
                   height={40}
-                  className="h-13 w-50 mx-0 mb-5"
+                  className="h-20 w-50"
                   priority
                 />
 
