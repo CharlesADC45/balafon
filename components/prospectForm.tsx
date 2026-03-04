@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useTransition } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { submitProspect, ProspectFormState } from "@/app/actions/submitProspects";
 
 const FREE_EMAIL_DOMAINS = [
   "gmail.com",
@@ -59,10 +58,8 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-const initialState: ProspectFormState = {
-  success: false,
-  message: "",
-};
+// ✅ Remplacez cette adresse par votre adresse mail de destination
+const DESTINATION_EMAIL = "mohamed.tangora@africadigitalconnect.net";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -73,8 +70,7 @@ const controlBaseClass =
   "w-full rounded-xl border px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)]";
 
 export default function ProspectForm() {
-  const [state, formAction, isPending] = useActionState(submitProspect, initialState);
-  const [isTransitionPending, startTransition] = useTransition();
+  const [submitted, setSubmitted] = useState(false);
 
   const {
     register,
@@ -82,48 +78,46 @@ export default function ProspectForm() {
     reset,
     trigger,
     getValues,
-    setError,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     mode: "onTouched",
   });
-
-  useEffect(() => {
-    if (state.success) {
-      reset();
-    }
-    if (state.errors) {
-      Object.entries(state.errors).forEach(([field, messages]) => {
-        if (messages?.[0]) {
-          setError(field as keyof FormData, {
-            type: "server",
-            message: messages[0],
-          });
-        }
-      });
-    }
-  }, [state, reset, setError]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const isValid = await trigger();
     if (!isValid) return;
 
-    const formData = new FormData();
-    const values = getValues();
-    Object.entries(values).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
+    const { entreprise, nom, prenom, email, telephone, description } = getValues();
 
-    startTransition(() => {
-      formAction(formData);
-    });
+    const subject = encodeURIComponent(`Demande de démo BALAFON – ${entreprise}`);
+
+    const body = encodeURIComponent(
+      `Bonjour,\n\n` +
+      `Vous avez reçu une nouvelle demande de démo via le formulaire BALAFON.\n\n` +
+      `─────────────────────────────\n` +
+      `🏢 Entreprise     : ${entreprise}\n` +
+      `👤 Nom            : ${nom}\n` +
+      `👤 Prénom         : ${prenom}\n` +
+      `📧 Email          : ${email}\n` +
+      `📞 Téléphone      : ${telephone}\n` +
+      `─────────────────────────────\n\n` +
+      `📝 Description du besoin :\n${description}\n\n` 
+    );
+
+    window.location.href = `mailto:${DESTINATION_EMAIL}?subject=${subject}&body=${body}`;
+
+    // Affiche le message de succès et réinitialise le formulaire
+    setSubmitted(true);
+    reset();
   };
 
-  if (state.success) {
+  if (submitted) {
     return (
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-7 text-center">
-        <p className="text-xl font-semibold text-emerald-800">{state.message}</p>
+        <p className="text-xl font-semibold text-emerald-800">
+          Votre application mail s&apos;est ouvert. Vérifiez et envoyez le mail pour finaliser votre demande !
+        </p>
         <Link
           href="/"
           className="mt-5 inline-flex text-sm font-medium text-emerald-700 underline underline-offset-2 hover:text-emerald-900"
@@ -147,12 +141,6 @@ export default function ProspectForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
-      {!state.success && state.message && (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-          {state.message}
-        </div>
-      )}
-
       <div>
         <label htmlFor="entreprise" className="mb-1 block text-sm font-medium text-zinc-700">
           Entreprise <span className="text-red-500">*</span>
@@ -258,10 +246,9 @@ export default function ProspectForm() {
 
       <button
         type="submit"
-        disabled={isPending || isTransitionPending}
-        className="w-full rounded-xl bg-[rgb(15,110,110)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[rgb(12,92,92)] focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        className="w-full rounded-xl bg-[rgb(15,110,110)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[rgb(12,92,92)] focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)] focus:ring-offset-2"
       >
-        {isPending || isTransitionPending ? "Envoi en cours..." : "Envoyer la demande"}
+        Envoyer la demande
       </button>
     </form>
   );
