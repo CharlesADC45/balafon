@@ -20,9 +20,9 @@ export default function DemoPage() {
                 <Image
                   src="/images/balafon-logo.png"
                   alt="BALAFON"
-                  width={172}
-                  height={60}
-                  className="h-11 w-auto"
+                  width={150}
+                  height={40}
+                  className="h-13 w-50 mx-0 mb-5"
                   priority
                 />
 
@@ -30,7 +30,7 @@ export default function DemoPage() {
                   Demandez votre démo BALAFON
                 </h1>
                 <p className="mt-4 max-w-sm text-sm leading-7 text-white/85 sm:text-base">
-                  Présentez votre besoin et obtenez un accompagnement adapté pour la supervision,
+                  Présentez vos besoin et obtenez un accompagnement adapté pour la supervision,
                   la sécurité et la continuité de vos opérations IT.
                 </p>
 
@@ -48,11 +48,6 @@ export default function DemoPage() {
                     Accompagnement personnalisé
                   </li>
                 </ul>
-
-                <div className="mt-auto rounded-2xl border border-white/30 bg-white/10 p-4 backdrop-blur">
-                  <p className="text-xs uppercase tracking-wide text-white/75">Contact direct</p>
-                  <p className="mt-1 text-sm font-semibold">+225 05 56 22 55 55</p>
-                </div>
               </div>
             </aside>
 
