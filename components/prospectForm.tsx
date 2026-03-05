@@ -116,7 +116,7 @@ export default function ProspectForm() {
     return (
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-7 text-center">
         <p className="text-xl font-semibold text-emerald-800">
-          Votre application mail s&apos;est ouvert. Vérifiez et envoyez le mail pour finaliser votre demande !
+          Votre application mail s&apos;est ouverte. Vérifiez et envoyez le mail pour finaliser votre demande !
         </p>
         <Link
           href="/"

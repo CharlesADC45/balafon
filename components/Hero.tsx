@@ -95,7 +95,7 @@ export default function Hero() {
             variants={fadeIn("up", 0)}
             className="mx-auto inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90 backdrop-blur"
           >
-            Solution digitale professionnelle - Observabilite et gestion IT
+            Solution digitale professionnelle - Observabilité et gestion IT
           </motion.p>
 
           <motion.h1
