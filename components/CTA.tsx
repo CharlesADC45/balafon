@@ -60,7 +60,7 @@ export default function CTA() {
           >
             <Link
               href="/demo"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-white px-7 text-base font-semibold text-[rgb(15,110,110)] shadow-[0_10px_24px_rgba(4,33,46,0.28)] transition-transform hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(15,110,110)]"
+              className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-7 text-base font-semibold text-[rgb(15,110,110)] shadow-[0_10px_24px_rgba(4,33,46,0.28)] transition-transform hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(15,110,110)]"
             >
               Demander une démo
             </Link>

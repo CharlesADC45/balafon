@@ -91,19 +91,19 @@ export default function Hero() {
 
       <div className="relative mx-auto flex min-h-[85vh] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-28">
         <motion.div variants={staggerChildren(0.1)} initial="hidden" animate="show">
-          <motion.p
+          {/* <motion.p
             variants={fadeIn("up", 0)}
             className="mx-auto inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90 backdrop-blur"
           >
             Solution digitale professionnelle - Observabilite et gestion IT
-          </motion.p>
+          </motion.p> */}
 
           <motion.h1
             variants={fadeIn("up", 0.05)}
             className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
           >
             {
-              "BALAFON centralise la supervision de votre SI pour anticiper les incidents et s\u00e9curiser vos op\u00e9rations."
+              "BALAFON centralise la supervision de votre SI pour anticiper les incidents et sécuriser vos opérations."
             }
           </motion.h1>
 
@@ -112,7 +112,7 @@ export default function Hero() {
             className="mx-auto mt-6 max-w-4xl text-pretty text-lg leading-8 text-white/85 sm:text-xl"
           >
             {
-              "Avec BALAFON, vos \u00e9quipes IT suivent en temps r\u00e9el serveurs, r\u00e9seau, applications et services critiques, re\u00e7oivent des alertes intelligentes et agissent plus vite pour garantir la continuit\u00e9 de service."
+              "Avec BALAFON, vos équipes IT suivent en temps réel serveurs, réseau, applications et services critiques, re\u00e7oivent des alertes intelligentes et agissent plus vite pour garantir la continuité de service."
             }
           </motion.p>
 
@@ -121,10 +121,10 @@ export default function Hero() {
             className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
           >
             <a
-              href="#produits"
+              href="#services"
               className="inline-flex h-12 min-w-[220px] items-center justify-center rounded-lg bg-[rgb(192,122,100)] px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[rgb(169,101,81)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
             >
-              Tous les produits
+              Tous les services
             </a>
             <a
               href="#demo"

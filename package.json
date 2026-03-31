@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@lottiefiles/dotlottie-react": "^0.18.8",
     "better-sqlite3": "^12.6.2",
     "drizzle-orm": "^0.45.1",
     "framer-motion": "^12.34.3",

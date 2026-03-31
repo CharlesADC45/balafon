@@ -69,7 +69,7 @@ export default function Products() {
 
   return (
     <section
-      id="produits"
+      id="services"
       className="relative overflow-hidden bg-[linear-gradient(180deg,_#0b4c55_0%,_#08363f_100%)] py-16 sm:py-20"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
