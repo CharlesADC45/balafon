@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -109,11 +109,13 @@ export default function HomePromoModal() {
                     id="balafon-promo-title"
                     className="mt-5 max-w-lg text-[3rem] font-semibold leading-[0.94] tracking-tight sm:text-[3.3rem]"
                   >
-                    <span className="block">R&eacute;duisez vos angles morts IT</span>
-                    <span className="block"></span>
+                    <span className="block tracking-[0.12em]">L'&eacute;fficacit&eacute;</span>
+                    <span className="block tracking-[0.1em]">red&eacute;finie</span>
                   </h2>
 
-                  <form onSubmit={handleSubmit} className="mt-13 max-w-xl">
+                  <p className="mt-5">Gagnez du temps, &eacute;conomisez de l'argent, et Optimisez pour l'arvenir </p>
+
+                  <form onSubmit={handleSubmit} className="mt-5 max-w-xl">
                     <div className="flex flex-col gap-4 sm:flex-col ">
                       <input
                         type="email"
@@ -131,10 +133,8 @@ export default function HomePromoModal() {
                     </div>
                   </form>
 
-                  
-
-                  <p className="mt-55 mb-2 text-center text-sm font-bold uppercase tracking-[0.24em] text-zinc-900/82 sm:text-[0.8rem]">
-                    <span className="block">Alerter, observer et diagnostiser</span>
+                  <p className="mt-45 mb-2 text-center text-sm font-bold uppercase tracking-[0.24em] text-zinc-900/82 sm:text-[0.8rem]">
+                    <span className="block">Voir, Comprendre et Diagnostiquer</span>
                   </p>
 
                   <div className="text-sm text-center text-zinc-900/82 sm:text-[0.6rem]">
@@ -165,7 +165,7 @@ export default function HomePromoModal() {
                       width={1024}
                       height={625}
                       sizes="(max-width: 1024px) 100vw, 560px"
-                      className="block h-[39rem] w-full object-cover object-left-top sm:h-[42rem]"
+                      className="block h-[39rem] w-full object-cover object-left-top sm:h-[45rem]"
                     />
                   </motion.div>
 
