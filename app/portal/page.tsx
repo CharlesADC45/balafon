@@ -9,22 +9,25 @@ type PortalCard = {
   subtitle: string;
   badgeClassName: string;
   mediaSrc: string;
+  href?: string;
 };
 
 const cards: PortalCard[] = [
   {
     id: "monitoring",
-    title: "EPM",
+    title: "NPM",
     subtitle: "Vue temps reel",
     badgeClassName: "bg-[rgb(233,246,245)] text-[rgb(15,110,110)]",
     mediaSrc: "/videos/chart-grow-up.webm",
+    href: "/console/npm",
   },
   {
     id: "security",
-    title: "CN",
+    title: "EDP",
     subtitle: "Protection active",
     badgeClassName: "bg-[rgb(241,236,251)] text-[rgb(98,72,177)]",
     mediaSrc: "/console-media/security.webm",
+    href: "/console/edp",
   },
   {
     id: "alerts",
@@ -64,8 +67,8 @@ function LottieBadge({
   mediaSrc: string;
 }) {
   return (
-    <div className={`flex h-20 w-30 items-center justify-center rounded-2xl ${className}`}>
-      <video autoPlay muted loop playsInline className="h-[90px] w-[90px] object-contain">
+    <div className={`flex h-70 w-53 items-center justify-center rounded-2xl ${className}`}>
+      <video autoPlay muted loop playsInline className="h-[150px] w-[150px] object-contain">
         <source src={mediaSrc} type="video/webm" />
       </video>
     </div>
@@ -165,7 +168,7 @@ export default function PortalPage() {
         </motion.div>
       </section>
 
-      <section id="services" className="relative mx-auto max-w-6xl px-4 mt-30 pb-12 sm:px-6 sm:pb-16">
+      <section id="services" className="relative mx-auto max-w-7xl mt-30">
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[62%] overflow-hidden">
           <motion.div
             aria-hidden
@@ -217,29 +220,52 @@ export default function PortalPage() {
           </p>
         </motion.div>
 
-        <div className="relative z-10 mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {cards.map((card, index) => (
-            <motion.button
-              key={card.id}
-              type="button"
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.4, delay: index * 0.05, ease: "easeOut" }}
-              className="group flex min-h-[184px] flex-col items-center rounded-[22px] border border-zinc-200 bg-white px-5 py-5 text-center shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-[rgb(15,110,110)]/20 hover:shadow-[0_18px_36px_rgba(15,110,110,0.08)]"
-            >
-              <LottieBadge
-                className={card.badgeClassName}
-                mediaSrc={card.mediaSrc}
-              />
+        <div className="relative z-10 mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+          {cards.map((card, index) => {
+            const cardContent = (
+              <>
+                <LottieBadge
+                  className={card.badgeClassName}
+                  mediaSrc={card.mediaSrc}
+                />
 
-              <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                {card.subtitle}
-              </p>
-              <h3 className="mt-2 text-lg font-semibold leading-7 text-[rgb(8,63,73)]">{card.title}</h3>
-              {/* <p className="mt-3 text-sm leading-6 text-zinc-600">{card.description}</p> */}
-            </motion.button>
-          ))}
+                <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
+                  {card.subtitle}
+                </p>
+                <h3 className="mt-2 text-lg font-semibold leading-7 text-[rgb(8,63,73)]">{card.title}</h3>
+              </>
+            );
+
+            const cardClassName =
+              "group flex min-h-[184px] flex-col items-center rounded-[22px] border border-zinc-200 bg-white p-7 text-center shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-[rgb(15,110,110)]/20 hover:shadow-[0_18px_36px_rgba(15,110,110,0.08)]";
+
+            const motionProps = {
+              initial: shouldReduceMotion ? false : { opacity: 0, y: 20 },
+              whileInView: shouldReduceMotion ? undefined : { opacity: 1, y: 0 },
+              viewport: { once: true, amount: 0.2 },
+              transition: { duration: 0.4, delay: index * 0.05, ease: "easeOut" },
+            } as const;
+
+            return card.href ? (
+              <motion.a
+                key={card.id}
+                href={card.href}
+                className={cardClassName}
+                {...motionProps}
+              >
+                {cardContent}
+              </motion.a>
+            ) : (
+              <motion.button
+                key={card.id}
+                type="button"
+                className={cardClassName}
+                {...motionProps}
+              >
+                {cardContent}
+              </motion.button>
+            );
+          })}
         </div>
       </section>
     </main>
