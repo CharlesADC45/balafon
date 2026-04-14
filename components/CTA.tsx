@@ -43,7 +43,7 @@ export default function CTA() {
             variants={fadeIn("up", 0)}
             className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl"
           >
-            Prêt à simplifier votre travail avec une informatique unifiée ?
+            Prêt à simplifier votre travail avec BALAFON ?
           </motion.h2>
 
           <motion.p
@@ -51,7 +51,7 @@ export default function CTA() {
             className="mt-4 max-w-xl text-base leading-7 text-white/78 sm:text-lg"
           >
             BALAFON centralise la supervision, automatise les actions et donne une vision claire à
-            votre équipe en quelques minutes.
+            votre équipe en temps réel.
           </motion.p>
 
           <motion.div

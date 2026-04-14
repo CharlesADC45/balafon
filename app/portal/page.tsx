@@ -1,7 +1,9 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import Image from "next/image";
+import Footer from "@/components/Footer";
 
 type PortalCard = {
   id: string;
@@ -97,11 +99,6 @@ export default function PortalPage() {
           <div className="grid gap-10 lg:grid-cols-[1.6fr_0.78fr]">
             <div>
               <div className="flex items-center gap-4">
-                {/* <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[rgb(233,246,245)]">
-                  <video autoPlay muted loop playsInline className="h-9 w-9 object-contain">
-                    <source src="/console-media/monitoring.webm" type="video/webm" />
-                  </video>
-                </div> */}
                 <h1 className="flex items-center gap-3 text-4xl font-semibold tracking-tight text-[rgb(8,63,73)] sm:text-5xl">
                   <span>Console</span>
                   <Image
@@ -117,6 +114,13 @@ export default function PortalPage() {
               <p className="mt-6 text-lg text-zinc-600">
                 Votre Workspace BALAFON
               </p>
+
+              <Link
+                href="/"
+                className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-[rgb(15,110,110)] px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-[rgb(8,63,73)]"
+              >
+                Retour au site
+              </Link>
 
               {/* <div className="mt-8 flex flex-wrap gap-3">
                 {quickActions.map((action, index) => (
@@ -168,7 +172,7 @@ export default function PortalPage() {
         </motion.div>
       </section>
 
-      <section id="services" className="relative mx-auto max-w-7xl mt-30">
+      <section id="services" className="relative mx-auto max-w-7xl mt-30 mb-30">
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[62%] overflow-hidden">
           <motion.div
             aria-hidden
@@ -214,9 +218,9 @@ export default function PortalPage() {
           transition={{ duration: 0.45, ease: "easeOut" }}
           className="relative z-10"
         >
-          <h2 className="text-3xl font-semibold tracking-tight text-[rgb(8,63,73)]">Raccourci</h2>
-          <p className="mt-3 max-w-2xl text-base leading-8 text-zinc-600">
-            Acces rapides a vos modules essentiels dans votre console.
+          <h2 className="text-5xl font-semibold tracking-tight text-[rgb(8,63,73)]">Raccourci</h2>
+          <p className="mt-4 max-w-3xl text-xl leading-9 text-zinc-600">
+            Accès rapides à vos modules essentiels dans votre console.
           </p>
         </motion.div>
 
@@ -268,6 +272,9 @@ export default function PortalPage() {
           })}
         </div>
       </section>
+
+      <Footer />
     </main>
+
   );
 }

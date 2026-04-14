@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -16,34 +16,15 @@ export default function Footer() {
             />
           </div>
           <p className="mt-3 max-w-sm text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-            Plateforme d’observabilité et de gestion IT pour gagner du temps, réduire les
-            interruptions et sécuriser vos environnements.
+            Plateforme d&apos;observabilité et de gestion IT pour gagner du temps, réduire les interruptions et sécuriser vos environnements.
           </p>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">Contact</h3>
-          <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-            <li>
-              <span className="font-medium text-zinc-900 dark:text-zinc-100">Téléphone :</span>{" "}
-              <a className="hover:underline" href="tel:+2250556225555">
-                +225 05 56 22 55 55
-              </a>
-            </li>
-            <li>
-              <span className="font-medium text-zinc-900 dark:text-zinc-100">Site :</span>{" "}
-              <a
-                className="hover:underline"
-                href="https://www.africadigitalconnect.net"
-                target="_blank"
-                rel="noreferrer"
-              >
-                africadigitalconnect.net
-              </a>
-            </li>
+          <ul className="space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
             <li className="leading-6">
               <span className="font-medium text-zinc-900 dark:text-zinc-100">Adresse :</span>{" "}
-              Cocody, II Plateaux, Rue J47, 01 BP 13551, Abidjan 01, Côte d’Ivoire
+              Cocody, II Plateaux, Rue J47, 01 BP 13551, Abidjan 01, Côte d&apos;Ivoire
             </li>
           </ul>
         </div>
@@ -77,8 +58,18 @@ export default function Footer() {
 
       <div className="mx-auto mt-10 max-w-6xl px-4 sm:px-6">
         <div className="flex flex-col gap-2 border-t border-zinc-200/70 pt-6 text-xs text-zinc-500 dark:border-zinc-800/70 dark:text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} BALAFON. Tous droits réservés.</p>
-          <p>Édité par Africa Digital Connect.</p>
+          <p>© {new Date().getFullYear()} BALAFON. Tous droits réservés</p>
+          <p>
+            BALAFON est un produit d&apos;
+            <a
+              className="hover:underline"
+              href="https://www.africadigitalconnect.net"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <b>africadigitalconnect.net</b>
+            </a>
+          </p>
         </div>
       </div>
     </footer>

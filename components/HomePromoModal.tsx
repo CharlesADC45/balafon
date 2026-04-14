@@ -7,10 +7,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const SESSION_CLOSE_KEY = "balafon-home-popup-closed";
-const SOLARWINDS_DASHBOARD_IMAGE =
-  "https://p1.aprimocdn.net/solarwinds/27d7dbd9-6673-45f6-bda4-b39900e8d675/Observability_Product_Screenshot_-_Network_Dashboard_Original%20file.png?auto=webp&disable=upscale&width=1024";
-const SOLARWINDS_USER_IMAGE =
-  "https://www.solarwinds.com/wp-content/uploads/2025/02/2501_Blog_LookInsideCloud_2400x1380-1024x589.png";
 
 export default function HomePromoModal() {
   const reduceMotion = useReducedMotion();
@@ -107,13 +103,13 @@ export default function HomePromoModal() {
 
                   <h2
                     id="balafon-promo-title"
-                    className="mt-5 max-w-lg text-[3rem] font-semibold leading-[0.94] tracking-tight sm:text-[3.3rem]"
+                    className="mt-5 max-w-lg text-[2rem] font-semibold leading-[0.94] tracking-tight sm:text-[3rem]"
                   >
-                    <span className="block tracking-[0.12em]">L'&eacute;fficacit&eacute;</span>
-                    <span className="block tracking-[0.1em]">red&eacute;finie</span>
+                    <span className="block tracking-[0.12em]">Revolutionnez </span>
+                    <span className="block tracking-[0.1em]"> Votre Gestion Informatique</span>
                   </h2>
 
-                  <p className="mt-5">Gagnez du temps, &eacute;conomisez de l'argent, et Optimisez pour l'arvenir </p>
+                  <p className="mt-5">Avec <b>BALAFON MSP</b>, entrez dans l&apos;ère de la gestion informatique nouvelle génération. </p>
 
                   <form onSubmit={handleSubmit} className="mt-5 max-w-xl">
                     <div className="flex flex-col gap-4 sm:flex-col ">
@@ -143,47 +139,26 @@ export default function HomePromoModal() {
                       onClick={closeForSession}
                       className="font-semibold tracking-[0.12em] underline underline-offset-4"
                     >
-                      J'utilise deja BALAFON
+                      J&apos;utilise deja BALAFON
                     </Link>
                   </div>
                 </div>
               </div>
 
-              <div className="relative flex min-h-[300px] items-center justify-end overflow-hidden bg-[linear-gradient(180deg,_rgba(246,248,249,1),_rgba(229,237,239,1))] px-3 py-6 sm:px-4 sm:py-7">
-                <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.72),_transparent_42%)]" />
-                <div className="pointer-events-none absolute right-[-18%] top-[-10%] h-72 w-72 rounded-full bg-[rgb(45,110,134)]/10 blur-3xl" />
-
-                <div className="absolute bottom-0 right-[-1.25rem] w-[calc(100%+2rem)] max-w-[34rem] sm:max-w-[37rem]">
-                  <motion.div
-                    className="relative overflow-hidden rounded-[24px] border border-white/70 shadow-[0_24px_60px_rgba(26,54,65,0.18)]"
-                    animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Image
-                      src={SOLARWINDS_DASHBOARD_IMAGE}
-                      alt="Dashboard SolarWinds d'observabilite reseau"
-                      width={1024}
-                      height={625}
-                      sizes="(max-width: 1024px) 100vw, 560px"
-                      className="block h-[39rem] w-full object-cover object-left-top sm:h-[45rem]"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute bottom-0 right-[-0.4rem] w-[74%] sm:w-[76%]"
-                    animate={reduceMotion ? undefined : { y: [0, 5, 0] }}
-                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                  >
-                    <Image
-                      src="/images/Girlcomputer.png"
-                      alt="Professionnel utilisant son ordinateur pour superviser l'infrastructure"
-                      width={1024}
-                      height={589}
-                      sizes="(max-width: 1024px) 75vw, 420px"
-                      className="block h-[30rem] w-full object-contain object-bottom sm:h-[34rem]"
-                    />
-                  </motion.div>
-                </div>
+              <div className="relative flex min-h-[300px] items-center justify-center overflow-hidden bg-[linear-gradient(180deg,_rgba(246,248,249,1),_rgba(229,237,239,1))] px-3 py-6 sm:px-4 sm:py-7">
+                <motion.div
+                  className="relative h-full min-h-[32rem] w-full overflow-hidden rounded-[24px] border border-white/70 shadow-[0_24px_60px_rgba(26,54,65,0.18)]"
+                  animate={reduceMotion ? undefined : { y: [0, -5, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Image
+                    src="/images/gar-it.jpeg"
+                    alt="Professionnel IT dans un centre de supervision"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 460px"
+                    className="object-cover object-center"
+                  />
+                </motion.div>
               </div>
             </div>
           </motion.div>

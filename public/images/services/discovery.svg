@@ -1,0 +1,8 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#06151c"/><stop offset="1" stop-color="#0f6e6e"/></linearGradient><filter id="blur"><feGaussianBlur stdDeviation="16"/></filter></defs>
+  <rect width="720" height="320" fill="url(#g)"/>
+  <circle cx="580" cy="80" r="110" fill="#c07a64" opacity=".35" filter="url(#blur)"/>
+  <g fill="none" stroke="#f6fbfb" stroke-width="4" opacity=".84"><path d="M118 210h110V106h110v70h110V88h110"/><circle cx="118" cy="210" r="13"/><circle cx="228" cy="106" r="13"/><circle cx="338" cy="176" r="13"/><circle cx="448" cy="88" r="13"/><circle cx="558" cy="88" r="13"/></g>
+  <g stroke="#ffb000" stroke-width="3" opacity=".9"><path d="M110 238c150-40 302-32 500-120"/></g>
+  <text x="44" y="72" fill="#fff" font-family="Arial" font-size="30" font-weight="700">Découverte</text>
+</svg>
