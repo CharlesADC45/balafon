@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
 
 type Feature = {
@@ -77,6 +77,10 @@ function FeatureIcon({ name }: { name: Feature["icon"] }) {
   );
 }
 
+function getCardDelay(idx: number) {
+  return 0.15 + idx * 0.12;
+}
+
 export default function Features() {
   return (
     <section
@@ -84,59 +88,89 @@ export default function Features() {
       className="relative overflow-hidden border-y border-zinc-200/70 bg-[linear-gradient(180deg,_#f8fbfb_0%,_#eef6f5_48%,_#ffffff_100%)] py-18 sm:py-24"
     >
       <div className="pointer-events-none absolute left-[-8rem] top-20 h-72 w-72 rounded-full bg-[rgb(15,110,110)]/10 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-7rem] bottom-10 h-80 w-80 rounded-full bg-[rgb(192,122,100)]/12 blur-3xl" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.32] [background-image:radial-gradient(circle_at_1px_1px,_rgb(15_110_110_/_0.14)_1px,_transparent_0)] [background-size:34px_34px]" />
+      <div className="pointer-events-none absolute right-[-7rem] bottom-10 h-80 w-80 rounded-full bg-accent/12 blur-3xl" />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
-          variants={staggerChildren(0.1)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
           <motion.p
             variants={fadeIn("up", 0)}
-            className="text-lg font-semibold tracking-[0.14em] text-[rgb(15,110,110)] sm:text-xl"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-lg font-semibold tracking-[0.14em] text-brand sm:text-xl"
           >
             Pourquoi BALAFON ?
           </motion.p>
           <motion.h2
             variants={fadeIn("up", 0.05)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             className="mt-4 max-w-5xl text-balance text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl"
           >
             Gagnez du temps, économisez de l&apos;argent et pilotez votre IT avec plus de visibilité.
           </motion.h2>
           <motion.p
             variants={fadeIn("up", 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
             className="mt-5 max-w-3xl text-pretty text-lg leading-8 text-zinc-600"
           >
             BALAFON rassemble les signaux critiques de votre système d&apos;information pour aider vos équipes à observer, comprendre et agir plus vite.
           </motion.p>
 
-          <motion.div variants={fadeIn("up", 0.12)} className="mt-16 grid gap-x-6 gap-y-14 sm:grid-cols-2">
+          <div className="mt-16 grid gap-x-6 gap-y-14 sm:grid-cols-2">
             {features.map((feature, idx) => (
               <motion.article
                 key={feature.title}
-                variants={fadeIn("up", idx * 0.04)}
-                className="relative rounded-[28px] border border-[rgb(15,110,110)]/12 bg-white/86 p-8 pt-12 shadow-[0_18px_55px_rgba(15,23,42,0.08)] backdrop-blur-sm"
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: getCardDelay(idx), ease: "easeOut" }}
+                whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+                className="group relative rounded-3xl border border-brand/12 bg-white/86 p-8 pt-12 shadow-[0_18px_55px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-shadow duration-300 hover:border-brand/25 hover:shadow-[0_24px_65px_rgba(15,110,110,0.14)]"
               >
-                <div className="absolute -top-8 left-8 flex h-16 w-16 items-center justify-center rounded-[22px] border border-[rgb(15,110,110)]/18 bg-[linear-gradient(135deg,_#eff9f8,_#ffffff)] text-[rgb(15,110,110)] shadow-[0_16px_35px_rgba(15,110,110,0.14)]">
-                  <div className="absolute inset-2 rounded-[18px] bg-[rgb(196,188,150)]/16" />
+                {/* Icon box with hover animation */}
+                <motion.div
+                  className="absolute -top-8 left-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-brand/18 bg-[linear-gradient(135deg,_#eff9f8,_#ffffff)] text-brand shadow-[0_16px_35px_rgba(15,110,110,0.14)]"
+                  whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <div className="absolute inset-2 rounded-xl bg-[rgb(196,188,150)]/16" />
                   <div className="relative">
                     <FeatureIcon name={feature.icon} />
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="absolute right-7 top-7 h-2.5 w-2.5 rounded-full bg-[rgb(192,122,100)]" />
+                {/* Accent dot with pulse */}
+                <motion.div
+                  className="absolute right-7 top-7 h-2.5 w-2.5 rounded-full bg-accent"
+                  animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
+                />
+
                 <h3 className="text-2xl font-semibold tracking-tight text-zinc-950">
                   {feature.title}
                 </h3>
                 <p className="mt-4 text-lg leading-8 text-zinc-600">
                   {feature.description}
                 </p>
+
+                {/* Animated bottom line on hover */}
+                <motion.div
+                  className="absolute bottom-0 left-8 right-8 h-[2px] origin-left bg-gradient-to-r from-brand to-accent"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                />
               </motion.article>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

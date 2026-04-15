@@ -44,3 +44,27 @@ export const staggerChildren = (stagger = 0.08, delayChildren = 0): Variants => 
   },
 });
 
+/** Fade in with blur clearing effect */
+export function fadeInBlur(delay = 0, duration = 0.7): Variants {
+  return {
+    hidden: { opacity: 0, y: 24, filter: "blur(10px)" },
+    show: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      transition: { duration, delay, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+}
+
+/** Scale in from smaller size */
+export function scaleIn(delay = 0, duration = 0.6): Variants {
+  return {
+    hidden: { opacity: 0, scale: 0.88 },
+    show: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration, delay, ease: [0.22, 1, 0.36, 1] },
+    },
+  };
+}

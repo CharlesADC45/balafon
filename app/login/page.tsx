@@ -29,7 +29,7 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(160deg,_#e9f3f2_0%,_#f6fafb_38%,_#ffffff_100%)] px-4 py-10 sm:px-6 sm:py-14">
+    <main id="main-content" className="min-h-screen bg-[linear-gradient(160deg,_#e9f3f2_0%,_#f6fafb_38%,_#ffffff_100%)] px-4 py-10 sm:px-6 sm:py-14">
       <section className="mx-auto grid w-full max-w-5xl overflow-hidden rounded-[32px] border border-zinc-200 bg-white shadow-[0_28px_90px_rgba(4,37,47,0.16)] lg:grid-cols-[1.05fr_1fr]">
         <div className="relative overflow-hidden bg-[linear-gradient(150deg,_#0b4450_0%,_#0f6e6e_55%,_#0c8191_100%)] px-7 py-8 text-white sm:px-10 sm:py-10">
           <div className="pointer-events-none absolute -left-20 top-14 h-44 w-44 rounded-full bg-white/10 blur-3xl" />
@@ -73,7 +73,7 @@ export default function LoginPage() {
 
         <div className="px-7 py-8 sm:px-10 sm:py-10">
           <div className="mx-auto max-w-md">
-            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[rgb(15,110,110)]">
+            <p className="text-sm font-semibold uppercase tracking-[0.22em] text-brand">
               Connexion
             </p>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight text-zinc-950">
@@ -94,7 +94,7 @@ export default function LoginPage() {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="nom@entreprise.com"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)]"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-brand"
                 />
               </div>
 
@@ -108,7 +108,7 @@ export default function LoginPage() {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                   placeholder="Votre mot de passe"
-                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)]"
+                  className="w-full rounded-xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-brand"
                 />
               </div>
 
@@ -121,7 +121,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[rgb(15,110,110)] px-5 text-sm font-semibold text-white transition hover:bg-[rgb(12,92,92)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(15,110,110)] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex h-12 w-full items-center justify-center rounded-xl bg-brand px-5 text-sm font-semibold text-white transition hover:bg-brand-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {loading ? "Connexion..." : "Se connecter"}
               </button>
@@ -131,7 +131,7 @@ export default function LoginPage() {
               <Link href="/" className="font-medium text-zinc-700 hover:text-zinc-950">
                 Retour au site
               </Link>
-              <Link href="/contact" className="font-medium text-[rgb(15,110,110)] hover:underline">
+              <Link href="/contact" className="font-medium text-brand hover:underline">
                 J&apos;ai oublier mes acces
               </Link>
             </div>

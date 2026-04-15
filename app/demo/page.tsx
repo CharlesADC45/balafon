@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Footer from "@/components/Footer";
-import Navbar from "@/components/NavbarForm";
+import Navbar from "@/components/Navbar";
 import ProspectForm from "@/components/prospectForm";
 
 export default function DemoPage() {
@@ -8,7 +8,7 @@ export default function DemoPage() {
     <div className="min-h-screen bg-[linear-gradient(180deg,_#e9f3f2_0%,_#f4f7fb_35%,_#ffffff_100%)] text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
       <Navbar />
 
-      <main className="px-4 py-10 sm:px-6 sm:py-14">
+      <main id="main-content" className="px-4 py-10 sm:px-6 sm:py-14">
         <section className="mx-auto w-full max-w-6xl overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-[0_24px_70px_rgba(8,53,63,0.18)] dark:border-zinc-800 dark:bg-zinc-950">
           <div className="grid lg:grid-cols-12">
             <aside className="relative isolate overflow-hidden bg-[linear-gradient(160deg,_#0a4f5a_0%,_#0f6e6e_52%,_#0c6b82_100%)] px-6 py-8 text-white sm:px-8 sm:py-10 lg:col-span-5 lg:px-9 lg:py-12">

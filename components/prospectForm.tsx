@@ -1,33 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useActionState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { submitProspect, type ProspectFormState } from "@/app/actions/submitProspects";
 
 const FREE_EMAIL_DOMAINS = [
-  "gmail.com",
-  "googlemail.com",
-  "yahoo.com",
-  "yahoo.fr",
-  "hotmail.com",
-  "hotmail.fr",
-  "outlook.com",
-  "outlook.fr",
-  "live.com",
-  "live.fr",
-  "icloud.com",
-  "me.com",
-  "aol.com",
-  "laposte.net",
-  "free.fr",
-  "sfr.fr",
-  "orange.fr",
-  "wanadoo.fr",
-  "protonmail.com",
-  "proton.me",
-  "gmx.com",
+  "gmail.com", "googlemail.com", "yahoo.com", "yahoo.fr",
+  "hotmail.com", "hotmail.fr", "outlook.com", "outlook.fr",
+  "live.com", "live.fr", "icloud.com", "me.com", "aol.com",
+  "laposte.net", "free.fr", "sfr.fr", "orange.fr", "wanadoo.fr",
+  "protonmail.com", "proton.me", "gmx.com",
 ];
 
 function isProEmail(email: string): boolean {
@@ -38,28 +23,25 @@ function isProEmail(email: string): boolean {
 const schema = z.object({
   entreprise: z
     .string()
-    .min(2, "Le nom de l'entreprise doit contenir au moins 2 caracteres")
-    .max(100, "Le nom de l'entreprise ne peut pas depasser 100 caracteres"),
-  nom: z.string().min(2, "Le nom doit contenir au moins 2 caracteres"),
-  prenom: z.string().min(2, "Le prenom doit contenir au moins 2 caracteres"),
+    .min(2, "Le nom de l'entreprise doit contenir au moins 2 caractères")
+    .max(100, "Le nom de l'entreprise ne peut pas dépasser 100 caractères"),
+  nom: z.string().min(2, "Le nom doit contenir au moins 2 caractères"),
+  prenom: z.string().min(2, "Le prénom doit contenir au moins 2 caractères"),
   email: z.string().email("Adresse mail invalide").refine(isProEmail, {
     message: "Veuillez utiliser votre email professionnel",
   }),
   telephone: z
     .string()
-    .min(14, "Le numero doit contenir 10 chiffres")
-    .max(14, "Le numero doit contenir 10 chiffres")
+    .min(14, "Le numéro doit contenir 10 chiffres")
+    .max(14, "Le numéro doit contenir 10 chiffres")
     .regex(/^\d{2} \d{2} \d{2} \d{2} \d{2}$/, "Format invalide, ex: 08 07 08 07 08"),
   description: z
     .string()
-    .min(10, "La description doit contenir au moins 10 caracteres")
-    .max(500, "La description ne doit pas depasser 500 caracteres"),
+    .min(10, "La description doit contenir au moins 10 caractères")
+    .max(500, "La description ne doit pas dépasser 500 caractères"),
 });
 
 type FormData = z.infer<typeof schema>;
-
-// ✅ Remplacez cette adresse par votre adresse mail de destination
-const DESTINATION_EMAIL = "mohamed.tangora@africadigitalconnect.net";
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
@@ -67,56 +49,40 @@ function FieldError({ message }: { message?: string }) {
 }
 
 const controlBaseClass =
-  "w-full rounded-xl border px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)]";
+  "w-full rounded-xl border px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-brand";
+
+const initialState: ProspectFormState = { success: false, message: "" };
 
 export default function ProspectForm() {
-  const [submitted, setSubmitted] = useState(false);
+  const [state, formAction, isPending] = useActionState(submitProspect, initialState);
 
   const {
     register,
     formState: { errors },
-    reset,
-    trigger,
-    getValues,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     mode: "onTouched",
   });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const isValid = await trigger();
-    if (!isValid) return;
-
-    const { entreprise, nom, prenom, email, telephone, description } = getValues();
-
-    const subject = encodeURIComponent(`Demande de démo BALAFON – ${entreprise}`);
-
-    const body = encodeURIComponent(
-      `Bonjour,\n\n` +
-      `Vous avez reçu une nouvelle demande de démo via le formulaire BALAFON.\n\n` +
-      `─────────────────────────────\n` +
-      `🏢 Entreprise     : ${entreprise}\n` +
-      `👤 Nom            : ${nom}\n` +
-      `👤 Prénom         : ${prenom}\n` +
-      `📧 Email          : ${email}\n` +
-      `📞 Téléphone      : ${telephone}\n` +
-      `─────────────────────────────\n\n` +
-      `📝 Description du besoin :\n${description}\n\n` 
-    );
-
-    window.location.href = `mailto:${DESTINATION_EMAIL}?subject=${subject}&body=${body}`;
-
-    // Affiche le message de succès et réinitialise le formulaire
-    setSubmitted(true);
-    reset();
+  const formatPhone = (value: string) => {
+    const cleaned = value.replace(/\D/g, "");
+    const match = cleaned.match(/(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
+    if (!match) return value;
+    return [match[1], match[2], match[3], match[4], match[5]]
+      .filter(Boolean)
+      .join(" ")
+      .slice(0, 14);
   };
 
-  if (submitted) {
+  if (state.success) {
     return (
       <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-7 text-center">
-        <p className="text-xl font-semibold text-emerald-800">
-          Votre application mail s&apos;est ouverte. Vérifiez et envoyez le mail pour finaliser votre demande !
+        <svg viewBox="0 0 24 24" className="mx-auto h-10 w-10 text-emerald-600" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+          <path d="M22 4L12 14.01l-3-3" />
+        </svg>
+        <p className="mt-4 text-lg font-semibold text-emerald-800">
+          {state.message}
         </p>
         <Link
           href="/"
@@ -128,19 +94,14 @@ export default function ProspectForm() {
     );
   }
 
-  const formatPhone = (value: string) => {
-    const cleaned = value.replace(/\D/g, "");
-    const match = cleaned.match(/(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})(\d{0,2})/);
-    if (!match) return value;
-
-    return [match[1], match[2], match[3], match[4], match[5]]
-      .filter(Boolean)
-      .join(" ")
-      .slice(0, 14);
-  };
-
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+    <form action={formAction} noValidate className="space-y-5">
+      {state.message && !state.success && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+          {state.message}
+        </div>
+      )}
+
       <div>
         <label htmlFor="entreprise" className="mb-1 block text-sm font-medium text-zinc-700">
           Entreprise <span className="text-red-500">*</span>
@@ -149,12 +110,13 @@ export default function ProspectForm() {
           id="entreprise"
           type="text"
           {...register("entreprise")}
+          name="entreprise"
           placeholder="Digital Entreprise"
           className={`${controlBaseClass} ${
-            errors.entreprise ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
+            errors.entreprise || state.errors?.entreprise ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
           }`}
         />
-        <FieldError message={errors.entreprise?.message} />
+        <FieldError message={errors.entreprise?.message || state.errors?.entreprise?.[0]} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -166,12 +128,13 @@ export default function ProspectForm() {
             id="nom"
             type="text"
             {...register("nom")}
+            name="nom"
             placeholder="Yao"
             className={`${controlBaseClass} ${
-              errors.nom ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
+              errors.nom || state.errors?.nom ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
             }`}
           />
-          <FieldError message={errors.nom?.message} />
+          <FieldError message={errors.nom?.message || state.errors?.nom?.[0]} />
         </div>
 
         <div>
@@ -182,12 +145,13 @@ export default function ProspectForm() {
             id="prenom"
             type="text"
             {...register("prenom")}
+            name="prenom"
             placeholder="Franck Junior"
             className={`${controlBaseClass} ${
-              errors.prenom ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
+              errors.prenom || state.errors?.prenom ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
             }`}
           />
-          <FieldError message={errors.prenom?.message} />
+          <FieldError message={errors.prenom?.message || state.errors?.prenom?.[0]} />
         </div>
       </div>
 
@@ -199,12 +163,13 @@ export default function ProspectForm() {
           id="email"
           type="email"
           {...register("email")}
+          name="email"
           placeholder="franckjunior.yao@entreprise.net"
           className={`${controlBaseClass} ${
-            errors.email ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
+            errors.email || state.errors?.email ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
           }`}
         />
-        <FieldError message={errors.email?.message} />
+        <FieldError message={errors.email?.message || state.errors?.email?.[0]} />
       </div>
 
       <div>
@@ -219,13 +184,14 @@ export default function ProspectForm() {
               e.target.value = formatPhone(e.target.value);
             },
           })}
+          name="telephone"
           placeholder="06 12 34 56 78"
           maxLength={14}
           className={`${controlBaseClass} ${
-            errors.telephone ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
+            errors.telephone || state.errors?.telephone ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
           }`}
         />
-        <FieldError message={errors.telephone?.message} />
+        <FieldError message={errors.telephone?.message || state.errors?.telephone?.[0]} />
       </div>
 
       <div>
@@ -236,19 +202,21 @@ export default function ProspectForm() {
           id="description"
           rows={4}
           {...register("description")}
-          placeholder="Decrivez vos besoins..."
+          name="description"
+          placeholder="Décrivez vos besoins..."
           className={`${controlBaseClass} resize-none ${
-            errors.description ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
+            errors.description || state.errors?.description ? "border-red-300 bg-red-50" : "border-zinc-300 bg-white"
           }`}
         />
-        <FieldError message={errors.description?.message} />
+        <FieldError message={errors.description?.message || state.errors?.description?.[0]} />
       </div>
 
       <button
         type="submit"
-        className="w-full rounded-xl bg-[rgb(15,110,110)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[rgb(12,92,92)] focus:outline-none focus:ring-2 focus:ring-[rgb(15,110,110)] focus:ring-offset-2"
+        disabled={isPending}
+        className="w-full rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-hover focus:outline-none focus:ring-2 focus:ring-brand focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-70"
       >
-        Envoyer la demande
+        {isPending ? "Envoi en cours..." : "Envoyer la demande"}
       </button>
     </form>
   );

@@ -1,14 +1,14 @@
 ﻿"use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
 
 export default function PreventiveOps() {
+  const shouldReduceMotion = useReducedMotion();
   return (
-    <section className="relative overflow-hidden bg-black py-20 text-white sm:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_48%,_rgba(15,110,110,0.28),_transparent_28%),radial-gradient(circle_at_76%_56%,_rgba(192,122,100,0.25),_transparent_22%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.11] [background-image:linear-gradient(rgb(255_255_255_/_0.12)_1px,transparent_1px),linear-gradient(90deg,rgb(255_255_255_/_0.12)_1px,transparent_1px)] [background-size:82px_82px]" />
+    <section className="relative overflow-hidden bg-white py-20 sm:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_68%_48%,_rgba(15,110,110,0.08),_transparent_28%),radial-gradient(circle_at_76%_56%,_rgba(192,122,100,0.06),_transparent_22%)]" />
 
       <motion.div
         variants={staggerChildren(0.12)}
@@ -20,26 +20,26 @@ export default function PreventiveOps() {
         <div>
           <motion.p
             variants={fadeIn("up", 0)}
-            className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-[rgb(196,188,150)]"
+            className="font-mono text-sm font-bold uppercase tracking-[0.18em] text-brand"
           >
             Observabilité préventive
           </motion.p>
           <motion.h2
             variants={fadeIn("up", 0.05)}
-            className="mt-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl"
+            className="mt-5 max-w-2xl text-4xl font-semibold leading-tight tracking-tight text-zinc-950 sm:text-5xl"
           >
             {"L'avenir de la gestion IT est préventif, intelligent et centré sur l'action."}
           </motion.h2>
           <motion.p
             variants={fadeIn("up", 0.1)}
-            className="mt-6 max-w-2xl text-lg leading-8 text-white/72"
+            className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600"
           >
             BALAFON rapproche monitoring, alertes, sécurité et reporting pour aider vos équipes à détecter les signaux faibles, comprendre les causes et agir avant l&apos;incident majeur.
           </motion.p>
           <motion.div variants={fadeIn("up", 0.15)}>
             <Link
               href="/about"
-              className="mt-8 inline-flex h-13 items-center justify-center rounded-full bg-white px-7 text-sm font-semibold text-black shadow-[0_16px_40px_rgba(255,255,255,0.16)] transition hover:bg-[rgb(196,188,150)]"
+              className="mt-8 inline-flex h-13 items-center justify-center rounded-xl bg-brand px-7 text-sm font-semibold text-white shadow-[0_16px_40px_rgba(15,110,110,0.2)] transition hover:bg-brand-hover"
             >
               En savoir plus
             </Link>
@@ -52,15 +52,15 @@ export default function PreventiveOps() {
         >
           <motion.div
             aria-hidden
-            className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(192,122,100,0.72)_0%,_rgba(15,110,110,0.56)_42%,_transparent_72%)] blur-sm"
-            animate={{ scale: [1, 1.08, 1], opacity: [0.72, 0.95, 0.72] }}
+            className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,_rgba(192,122,100,0.25)_0%,_rgba(15,110,110,0.18)_42%,_transparent_72%)] blur-xl"
+            animate={shouldReduceMotion ? { opacity: 0.72 } : { scale: [1, 1.08, 1], opacity: [0.72, 0.95, 0.72] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
           />
 
           <motion.svg
             viewBox="0 0 560 380"
             className="relative z-10 mx-auto h-[360px] w-full max-w-[560px]"
-            animate={{ y: [0, -10, 0] }}
+            animate={shouldReduceMotion ? { opacity: 1 } : { y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             aria-hidden
           >
@@ -96,7 +96,7 @@ export default function PreventiveOps() {
                   points={`${cx},${cy - 24} ${cx + 24},${cy - 10} ${cx + 22},${cy + 16} ${cx},${cy + 28} ${cx - 22},${cy + 16} ${cx - 24},${cy - 10}`}
                   fill={index % 2 === 0 ? "#6c63ff" : "#0fcecf"}
                   opacity="0.9"
-                  animate={{ y: [0, index % 2 === 0 ? -8 : 8, 0] }}
+                  animate={shouldReduceMotion ? { opacity: 0.9 } : { y: [0, index % 2 === 0 ? -8 : 8, 0] }}
                   transition={{ duration: 3 + index * 0.18, repeat: Infinity, ease: "easeInOut" }}
                 />
               </g>

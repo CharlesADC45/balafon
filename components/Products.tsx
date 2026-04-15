@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
 
@@ -22,8 +22,8 @@ const cards: ProductCard[] = [
     signature: "Équipe inventaire IT",
     product: "SERVICE Découverte",
     accent: "from-[rgb(8,91,91)] to-[rgb(7,62,70)]",
-    imageSrc: "https://images.pexels.com/photos/4623309/pexels-photo-4623309.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Équipe IT collaborant devant un ordinateur",
+    imageSrc: "/images/decouvert-img.jpg",
+    imageAlt: "Découverte et cartographie des actifs IT",
   },
   {
     title: "Monitoring",
@@ -31,8 +31,8 @@ const cards: ProductCard[] = [
     signature: "Centre d'observabilité",
     product: "SERVICE Monitoring",
     accent: "from-[rgb(11,103,116)] to-[rgb(6,69,88)]",
-    imageSrc: "https://images.pexels.com/photos/5380597/pexels-photo-5380597.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Équipe de supervision IT devant plusieurs écrans",
+    imageSrc: "/images/monitoring.jpg",
+    imageAlt: "Supervision et monitoring IT en temps réel",
   },
   {
     title: "Contrôle",
@@ -40,8 +40,8 @@ const cards: ProductCard[] = [
     signature: "Équipe gouvernance IT",
     product: "SERVICE Contrôle",
     accent: "from-[rgb(18,86,119)] to-[rgb(9,57,85)]",
-    imageSrc: "https://images.pexels.com/photos/3183145/pexels-photo-3183145.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Professionnels analysant des indicateurs sur ordinateur",
+    imageSrc: "/images/contol-img.jpg",
+    imageAlt: "Contrôle et gouvernance IT",
   },
   {
     title: "Sécurité",
@@ -49,42 +49,25 @@ const cards: ProductCard[] = [
     signature: "Équipe cybersécurité",
     product: "SERVICE Sécurité",
     accent: "from-[rgb(112,84,66)] to-[rgb(78,57,46)]",
-    imageSrc: "https://images.pexels.com/photos/5380655/pexels-photo-5380655.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Experts cybersécurité travaillant dans un centre de contrôle",
+    imageSrc: "/images/security-img.jpg",
+    imageAlt: "Sécurité et protection des environnements IT",
   },
   {
-    title: "Alertes",
-    text: "Recevez des alertes instantanées, priorisées et exploitables pour agir avant l'impact métier.",
+    title: "Notification & Reporting",
+    text: "Recevez des alertes priorisées, diffusez l'information aux bonnes équipes et transformez vos données en tableaux de bord et rapports de pilotage.",
     signature: "Centre de supervision",
-    product: "SERVICE Alertes",
-    accent: "from-[rgb(12,112,105)] to-[rgb(7,73,78)]",
-    imageSrc: "https://images.pexels.com/photos/5380594/pexels-photo-5380594.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Analyste surveillant des écrans d'alerte",
-  },
-  {
-    title: "Notifications",
-    text: "Diffusez la bonne information aux bonnes équipes, avec un suivi plus fluide des incidents et des escalades.",
-    signature: "Équipe opérations",
-    product: "SERVICE Notifications",
+    product: "SERVICE Notification & Reporting",
     accent: "from-[rgb(44,100,128)] to-[rgb(12,62,91)]",
-    imageSrc: "https://images.pexels.com/photos/8867232/pexels-photo-8867232.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Équipe support et notifications en centre d'assistance",
-  },
-  {
-    title: "Reporting",
-    text: "Transformez vos données d'exploitation en tableaux de bord, rapports de pilotage et preuves de performance.",
-    signature: "Équipe reporting",
-    product: "SERVICE Reporting",
-    accent: "from-[rgb(123,76,61)] to-[rgb(84,55,46)]",
-    imageSrc: "https://images.pexels.com/photos/6476261/pexels-photo-6476261.jpeg?auto=compress&cs=tinysrgb&w=1200",
-    imageAlt: "Équipe analysant des rapports et données métier",
+    imageSrc: "/images/reporting-img.jpg",
+    imageAlt: "Notifications, alertes et tableaux de bord",
   },
 ];
 
 export default function Products() {
+  const shouldReduceMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
-  const step = useMemo(() => 386, []);
+  const step = useMemo(() => 320, []);
 
   const goTo = (index: number) => {
     const node = trackRef.current;
@@ -106,21 +89,20 @@ export default function Products() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,_#073f48_0%,_#041d28_48%,_#02081d_100%)] py-16 text-white sm:py-24"
+      className="relative overflow-hidden bg-white py-16 sm:py-24"
     >
       <motion.div
         aria-hidden
-        className="absolute left-[-8rem] top-10 h-80 w-80 rounded-full bg-[rgb(15,110,110)]/25 blur-3xl"
-        animate={{ x: [0, 30, 0], y: [0, 18, 0] }}
+        className="absolute left-[-8rem] top-10 h-80 w-80 rounded-full bg-brand/8 blur-3xl"
+        animate={shouldReduceMotion ? { opacity: 0.08 } : { x: [0, 30, 0], y: [0, 18, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
-        className="absolute right-[-7rem] top-48 h-96 w-96 rounded-full bg-[rgb(192,122,100)]/20 blur-3xl"
-        animate={{ x: [0, -28, 0], y: [0, -22, 0] }}
+        className="absolute right-[-7rem] top-48 h-96 w-96 rounded-full bg-accent/8 blur-3xl"
+        animate={shouldReduceMotion ? { opacity: 0.08 } : { x: [0, -28, 0], y: [0, -22, 0] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="pointer-events-none absolute inset-0 opacity-[0.08] [background-image:linear-gradient(rgb(255_255_255_/_0.16)_1px,transparent_1px),linear-gradient(90deg,rgb(255_255_255_/_0.16)_1px,transparent_1px)] [background-size:72px_72px]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
@@ -131,21 +113,21 @@ export default function Products() {
         >
           <motion.p
             variants={fadeIn("up", 0)}
-            className="text-lg font-semibold tracking-wide text-[rgb(192,122,100)] sm:text-xl"
+            className="text-lg font-semibold tracking-wide text-brand sm:text-xl"
           >
             Services
           </motion.p>
           <motion.h2
             variants={fadeIn("up", 0.05)}
-            className="mt-3 max-w-5xl text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl"
+            className="mt-3 max-w-5xl text-balance text-3xl font-semibold tracking-tight text-zinc-950 sm:text-4xl md:text-5xl"
           >
             Des solutions unifiées pour découvrir, observer, contrôler et sécuriser votre SI.
           </motion.h2>
           <motion.p
             variants={fadeIn("up", 0.1)}
-            className="mt-4 max-w-4xl text-pretty text-lg leading-8 text-white/82"
+            className="mt-4 max-w-4xl text-pretty text-lg leading-8 text-zinc-600"
           >
-            Faites défiler les cartes de gauche à droite pour explorer les 7 axes majeurs de la plateforme BALAFON.
+            Faites défiler les cartes de gauche à droite pour explorer les 5 services majeurs de la plateforme BALAFON.
           </motion.p>
 
           <motion.div variants={fadeIn("up", 0.14)} className="mt-11">
@@ -155,47 +137,60 @@ export default function Products() {
               className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-5 scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               {cards.map((card) => (
-                <article
+                <motion.article
                   key={card.product}
-                  className={`relative flex min-h-[520px] min-w-[86%] snap-start flex-col overflow-hidden rounded-[28px] border border-white/25 bg-gradient-to-b text-white shadow-[0_22px_70px_rgba(0,0,0,0.24)] sm:min-w-[360px] ${card.accent}`}
+                  whileHover={{ scale: 1.02, transition: { duration: 0.25, ease: "easeOut" } }}
+                  className={`relative flex min-h-[400px] min-w-[80%] snap-start flex-col overflow-hidden rounded-3xl border border-zinc-200/60 bg-gradient-to-b text-white shadow-[0_12px_40px_rgba(15,23,42,0.10)] transition-shadow duration-300 hover:shadow-[0_20px_50px_rgba(15,23,42,0.16)] sm:min-w-[300px] ${card.accent}`}
                 >
                   <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-white/12 blur-2xl" />
                   <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/18 to-transparent" />
-                  <div
-                    role="img"
-                    aria-label={card.imageAlt}
-                    className="relative h-44 overflow-hidden bg-cover bg-center grayscale-[35%]"
-                    style={{ backgroundImage: `url(${card.imageSrc})` }}
-                  >
+                  <div className="relative h-36 overflow-hidden">
+                    <Image
+                      src={card.imageSrc}
+                      alt={card.imageAlt}
+                      fill
+                      sizes="(max-width: 640px) 86vw, 360px"
+                      className="object-cover object-center grayscale-[35%]"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/22 to-transparent" />
                     <div className="absolute inset-0 bg-[linear-gradient(110deg,_rgba(2,8,29,0.2),_transparent_42%,_rgba(192,122,100,0.22))]" />
                   </div>
 
-                  <div className="relative flex flex-1 flex-col p-7">
-                    <h3 className="text-4xl font-semibold leading-[1.08] tracking-tight">
+                  <div className="relative flex flex-1 flex-col p-5">
+                    <h3 className="text-2xl font-semibold leading-tight tracking-tight">
                       {card.title}
                     </h3>
-                    <p className="mt-5 text-lg leading-8 text-white/90">{card.text}</p>
+                    <p className="mt-3 text-sm leading-6 text-white/90">{card.text}</p>
 
-                    <div className="relative mt-auto pt-7">
-                      <p className="text-base font-semibold text-white/95">{card.signature}</p>
-                      <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/48 bg-white/10 px-4 py-2 text-base font-semibold backdrop-blur-sm">
+                    <div className="relative mt-auto pt-5">
+                      <p className="text-sm font-semibold text-white/95">{card.signature}</p>
+                      <div className="mt-3 inline-flex items-center gap-2 rounded-full border border-white/48 bg-white/10 px-3 py-1.5 text-sm font-semibold backdrop-blur-sm">
                         {card.product}
                       </div>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
 
-            <div className="mt-7 flex items-center justify-center gap-4">
+            <div
+              className="mt-7 flex items-center justify-center gap-4"
+              role="group"
+              aria-label="Navigation du carrousel"
+              onKeyDown={(e) => {
+                if (e.key === "ArrowLeft") move(-1);
+                if (e.key === "ArrowRight") move(1);
+              }}
+            >
               <button
                 type="button"
                 onClick={() => move(-1)}
                 aria-label="Carte précédente"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/55 text-xl text-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-300 text-zinc-600 transition-colors hover:bg-brand/8 hover:border-brand/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >
-                {"<"}
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
               </button>
 
               <div className="flex items-center gap-3">
@@ -206,8 +201,10 @@ export default function Products() {
                     onClick={() => goTo(idx)}
                     aria-label={`Aller à la carte ${idx + 1}`}
                     className={[
-                      "h-4 w-4 rounded-full transition-colors",
-                      idx === active ? "bg-white" : "bg-white/45",
+                      "h-3 w-3 rounded-full transition-colors",
+                      "before:absolute before:inset-[-8px] before:content-['']",
+                      "relative",
+                      idx === active ? "bg-brand" : "bg-zinc-300 hover:bg-brand/50",
                     ].join(" ")}
                   />
                 ))}
@@ -217,16 +214,18 @@ export default function Products() {
                 type="button"
                 onClick={() => move(1)}
                 aria-label="Carte suivante"
-                className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/55 text-xl text-white"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-zinc-300 text-zinc-600 transition-colors hover:bg-brand/8 hover:border-brand/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
               >
-                {">"}
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
               </button>
             </div>
           </motion.div>
 
           <motion.div
             variants={fadeIn("up", 0.18)}
-            className="relative mt-20 overflow-hidden rounded-[36px] border border-white/12 bg-[#031b24] px-6 py-10 shadow-[0_30px_100px_rgba(0,0,0,0.28)] sm:px-10 lg:grid lg:min-h-[430px] lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-14"
+            className="relative mt-20 overflow-hidden rounded-[32px] border border-brand/12 bg-[linear-gradient(160deg,_#0a4f5a_0%,_#0f6e6e_55%,_#0c6b82_100%)] px-6 py-10 shadow-[0_30px_80px_rgba(15,110,110,0.18)] sm:px-10 lg:grid lg:min-h-[430px] lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-14"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_48%,_rgba(15,110,110,0.42),_rgba(192,122,100,0.26)_22%,_transparent_42%)]" />
             <div className="absolute right-14 top-12 h-28 w-px bg-[rgb(192,122,100)]/28" />
@@ -246,7 +245,7 @@ export default function Products() {
               </p>
               <a
                 href="#contact"
-                className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-sm font-semibold text-[#020824]"
+                className="mt-8 inline-flex h-12 items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-[#020824]"
               >
                 Découvrir la plateforme
               </a>
@@ -254,7 +253,7 @@ export default function Products() {
 
             <motion.div
               className="relative z-10 mt-12 flex min-h-[260px] items-center justify-center lg:mt-0"
-              animate={{ y: [0, -10, 0] }}
+              animate={shouldReduceMotion ? { opacity: 1 } : { y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <div className="absolute h-72 w-72 rounded-full bg-[radial-gradient(circle,_#0f6e6e_0%,_#c07a64_46%,_transparent_70%)] blur-sm" />

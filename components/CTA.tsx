@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { fadeIn, staggerChildren } from "../animations/fadeIn";
-import Link from 'next/link'
+import { scaleIn } from "../animations/fadeIn";
+import Link from "next/link";
 
 export default function CTA() {
   const shouldReduceMotion = useReducedMotion();
@@ -10,12 +10,13 @@ export default function CTA() {
   return (
     <section id="demo" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
       <motion.div
-        variants={staggerChildren(0.1)}
+        variants={scaleIn(0, 0.7)}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.35 }}
-        className="relative overflow-hidden rounded-[26px] bg-[rgb(15,110,110)] px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14"
+        className="relative overflow-hidden rounded-3xl bg-brand px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14"
       >
+        {/* Background effects */}
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,_rgb(255,255,255,0.18),_transparent_45%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_84%_82%,_rgb(192,122,100,0.28),_transparent_40%)]" />
@@ -40,14 +41,20 @@ export default function CTA() {
 
         <div className="relative z-10 max-w-2xl">
           <motion.h2
-            variants={fadeIn("up", 0)}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl"
           >
             Prêt à simplifier votre travail avec BALAFON ?
           </motion.h2>
 
           <motion.p
-            variants={fadeIn("up", 0.05)}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
             className="mt-4 max-w-xl text-base leading-7 text-white/78 sm:text-lg"
           >
             BALAFON centralise la supervision, automatise les actions et donne une vision claire à
@@ -55,18 +62,40 @@ export default function CTA() {
           </motion.p>
 
           <motion.div
-            variants={fadeIn("up", 0.1)}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
             className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
-            <Link
-              href="/demo"
-              className="inline-flex h-12 items-center justify-center rounded-lg bg-white px-7 text-base font-semibold text-[rgb(15,110,110)] shadow-[0_10px_24px_rgba(4,33,46,0.28)] transition-transform hover:translate-y-[-1px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(15,110,110)]"
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="relative"
             >
-              Demander une démo
-            </Link>
+              {/* Pulse glow behind button */}
+              <motion.div
+                className="absolute -inset-1 rounded-xl bg-white/30 blur-md"
+                animate={shouldReduceMotion ? { opacity: 0.3 } : { opacity: [0.2, 0.5, 0.2], scale: [0.98, 1.04, 0.98] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <Link
+                href="/demo"
+                className="relative inline-flex h-12 items-center justify-center rounded-xl bg-white px-7 text-base font-semibold text-brand shadow-[0_10px_24px_rgba(4,33,46,0.28)] transition-shadow hover:shadow-[0_16px_36px_rgba(4,33,46,0.38)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand"
+              >
+                Demander une démo
+              </Link>
+            </motion.div>
           </motion.div>
 
-          <motion.p variants={fadeIn("up", 0.14)} className="mt-5 text-sm text-white/65">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            className="mt-5 text-sm text-white/65"
+          >
             Réponse moyenne en moins de 24h.
           </motion.p>
         </div>

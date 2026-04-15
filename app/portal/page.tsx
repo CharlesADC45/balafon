@@ -81,10 +81,10 @@ export default function PortalPage() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,_#eef6f5_0%,_#f7fbfb_36%,_#ffffff_100%)]">
+    <main id="main-content" className="min-h-screen bg-[linear-gradient(180deg,_#eef6f5_0%,_#f7fbfb_36%,_#ffffff_100%)]">
       <section className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(circle_at_18%_20%,_rgb(15,110,110,0.12),_transparent_32%),radial-gradient(circle_at_78%_18%,_rgb(192,122,100,0.11),_transparent_28%)]" />
-        <div className="pointer-events-none absolute left-[18%] top-8 h-5 w-5 rounded-full bg-[rgb(15,110,110)]/85" />
+        <div className="pointer-events-none absolute left-[18%] top-8 h-5 w-5 rounded-full bg-brand/85" />
         {/* <div className="pointer-events-none absolute right-[14%] top-10 h-9 w-9 rounded-full bg-[rgb(55,168,83)]/95" /> */}
         {/* <div className="pointer-events-none absolute right-[28%] top-32 h-5 w-5 rounded-full bg-[rgb(255,189,46)]/95" /> */}
         {/* <div className="pointer-events-none absolute right-[23%] top-20 h-28 w-28 rotate-45 border border-zinc-400/70" /> */}
@@ -117,7 +117,7 @@ export default function PortalPage() {
 
               <Link
                 href="/"
-                className="mt-8 inline-flex h-12 items-center justify-center rounded-full bg-[rgb(15,110,110)] px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-[rgb(8,63,73)]"
+                className="mt-8 inline-flex h-12 items-center justify-center rounded-xl bg-brand px-6 text-sm font-semibold text-white shadow-sm transition hover:bg-[rgb(8,63,73)]"
               >
                 Retour au site
               </Link>
@@ -130,7 +130,7 @@ export default function PortalPage() {
                     initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
                     animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: 0.08 * index, ease: "easeOut" }}
-                    className="inline-flex h-11 items-center justify-center rounded-full border border-[rgb(15,110,110)]/25 bg-white px-5 text-sm font-semibold text-[rgb(15,110,110)] shadow-sm transition hover:border-[rgb(15,110,110)]/40 hover:bg-[rgb(15,110,110)]/5"
+                    className="inline-flex h-11 items-center justify-center rounded-full border border-[rgb(15,110,110)]/25 bg-white px-5 text-sm font-semibold text-[rgb(15,110,110)] shadow-sm transition hover:border-[rgb(15,110,110)]/40 hover:bg-brand/5"
                   >
                     {action}
                   </motion.button>
@@ -142,12 +142,12 @@ export default function PortalPage() {
               initial={shouldReduceMotion ? false : { opacity: 0, x: 24 }}
               animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
-              className="self-start rounded-[28px] bg-[linear-gradient(160deg,_rgb(9,74,83)_0%,_rgb(15,110,110)_58%,_rgb(10,84,94)_100%)] p-6 text-white shadow-[0_18px_40px_rgba(15,110,110,0.18)]"
+              className="self-start rounded-3xl bg-[linear-gradient(160deg,_rgb(9,74,83)_0%,_rgb(15,110,110)_58%,_rgb(10,84,94)_100%)] p-6 text-white shadow-[0_18px_40px_rgba(15,110,110,0.18)]"
             >
               <p className="max-w-xs text-2xl font-medium leading-10">
                 Rejoignez l&apos;espace BALAFON pour suivre vos services et agir plus vite.
               </p>
-              <div className="mt-6 overflow-hidden rounded-[22px] border border-white/60 bg-white/70 shadow-sm">
+              <div className="mt-6 overflow-hidden rounded-3xl border border-white/60 bg-white/70 shadow-sm">
                 <video
                   autoPlay
                   muted
@@ -176,7 +176,7 @@ export default function PortalPage() {
         <div className="pointer-events-none absolute inset-y-0 right-0 w-[62%] overflow-hidden">
           <motion.div
             aria-hidden
-            className="absolute right-[-10%] top-0 h-80 w-80 rounded-full bg-[rgb(15,110,110)]/7 blur-3xl"
+            className="absolute right-[-10%] top-0 h-80 w-80 rounded-full bg-brand/7 blur-3xl"
             animate={shouldReduceMotion ? { opacity: 0.7 } : { x: [0, -18, 0], y: [0, 14, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -241,7 +241,7 @@ export default function PortalPage() {
             );
 
             const cardClassName =
-              "group flex min-h-[184px] flex-col items-center rounded-[22px] border border-zinc-200 bg-white p-7 text-center shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-[rgb(15,110,110)]/20 hover:shadow-[0_18px_36px_rgba(15,110,110,0.08)]";
+              "group flex min-h-[184px] flex-col items-center rounded-3xl border border-zinc-200 bg-white p-7 text-center shadow-[0_12px_30px_rgba(15,23,42,0.05)] transition hover:-translate-y-1 hover:border-brand/20 hover:shadow-[0_18px_36px_rgba(15,110,110,0.08)]";
 
             const motionProps = {
               initial: shouldReduceMotion ? false : { opacity: 0, y: 20 },

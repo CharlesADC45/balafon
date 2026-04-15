@@ -33,8 +33,8 @@ export default function Footer() {
           <h3 className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">Informations</h3>
           <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
             <li>
-              <Link className="hover:underline" href="/#produits">
-                Produits
+              <Link className="hover:underline" href="/#services">
+                Services
               </Link>
             </li>
             <li>
@@ -60,14 +60,14 @@ export default function Footer() {
         <div className="flex flex-col gap-2 border-t border-zinc-200/70 pt-6 text-xs text-zinc-500 dark:border-zinc-800/70 dark:text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} BALAFON. Tous droits réservés</p>
           <p>
-            BALAFON est un produit d&apos;
+            BALAFON est un produit <span> </span>
             <a
               className="hover:underline"
               href="https://www.africadigitalconnect.net"
               target="_blank"
               rel="noreferrer"
             >
-              <b>africadigitalconnect.net</b>
+              <b>Africa Digital Connect</b>
             </a>
           </p>
         </div>

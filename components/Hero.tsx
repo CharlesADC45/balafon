@@ -1,7 +1,42 @@
-﻿"use client";
+"use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { fadeIn, staggerChildren } from "../animations/fadeIn";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+
+const wordReveal: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.3 } },
+};
+
+const wordVariant: Variants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const fadeUp = (delay = 0): Variants => ({
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  },
+});
+
+function SplitWords({ text, className }: { text: string; className?: string }) {
+  return (
+    <motion.h1 variants={wordReveal} initial="hidden" animate="show" className={className}>
+      {text.split(" ").map((word, i) => (
+        <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.28em]">
+          {word}
+        </motion.span>
+      ))}
+    </motion.h1>
+  );
+}
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -11,6 +46,7 @@ export default function Hero() {
       id="top"
       className="relative overflow-hidden bg-[linear-gradient(180deg,_#083c45_0%,_#0a525c_46%,_#072f36_100%)]"
     >
+      {/* Background effects */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,_rgb(255,255,255,0.14),_transparent_44%)]" />
 
@@ -27,7 +63,7 @@ export default function Hero() {
 
         <motion.div
           aria-hidden
-          className="absolute left-[-12rem] top-28 h-[22rem] w-[22rem] rounded-full bg-[rgb(192,122,100)]/24 blur-[90px]"
+          className="absolute left-[-12rem] top-28 h-[22rem] w-[22rem] rounded-full bg-accent/24 blur-[90px]"
           animate={shouldReduceMotion ? { opacity: 0.35 } : { x: [-18, 16, -18], y: [0, 12, 0] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -89,49 +125,79 @@ export default function Hero() {
         />
       </div>
 
+      {/* Content */}
       <div className="relative mx-auto flex min-h-[85vh] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-28">
-        <motion.div variants={staggerChildren(0.1)} initial="hidden" animate="show">
-          {/* <motion.p
-            variants={fadeIn("up", 0)}
-            className="mx-auto inline-flex items-center rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold text-white/90 backdrop-blur"
-          >
-            Solution digitale professionnelle - Observabilité et gestion IT
-          </motion.p> */}
 
-          <motion.h1
-            variants={fadeIn("up", 0.05)}
+        {/* Title with word-by-word reveal */}
+        {shouldReduceMotion ? (
+          <h1 className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+            BALAFON centralise la supervision de votre SI pour anticiper les incidents et sécuriser vos opérations.
+          </h1>
+        ) : (
+          <SplitWords
+            text="BALAFON centralise la supervision de votre SI pour anticiper les incidents et sécuriser vos opérations."
             className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
-          >
-            {
-              "BALAFON centralise la supervision de votre SI pour anticiper les incidents et sécuriser vos opérations."
-            }
-          </motion.h1>
+          />
+        )}
 
-          <motion.p
-            variants={fadeIn("up", 0.1)}
-            className="mx-auto mt-6 max-w-4xl text-pretty text-lg leading-8 text-white/85 sm:text-xl"
-          >
-            {
-              "Avec BALAFON, vos équipes IT suivent en temps réel serveurs, réseau, applications et services critiques, re\u00e7oivent des alertes intelligentes et agissent plus vite pour garantir la continuité de service."
-            }
-          </motion.p>
+        {/* Subtitle */}
+        <motion.p
+          variants={fadeUp(1.2)}
+          initial="hidden"
+          animate="show"
+          className="mx-auto mt-6 max-w-4xl text-pretty text-lg leading-8 text-white/85 sm:text-xl"
+        >
+          Avec BALAFON, vos équipes IT suivent en temps réel serveurs, réseau, applications et services critiques, reçoivent des alertes intelligentes et agissent plus vite pour garantir la continuité de service.
+        </motion.p>
 
+        {/* CTA buttons */}
+        <motion.div
+          variants={fadeUp(1.5)}
+          initial="hidden"
+          animate="show"
+          className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <motion.a
+            href="#services"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="group relative inline-flex h-12 min-w-[220px] items-center justify-center overflow-hidden rounded-xl bg-accent px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
+          >
+            <motion.span
+              className="absolute inset-0 bg-[linear-gradient(90deg,_transparent,_rgba(255,255,255,0.2),_transparent)]"
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+            />
+            <span className="relative">Tous les services</span>
+          </motion.a>
+          <motion.a
+            href="#demo"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="inline-flex h-12 min-w-[220px] items-center justify-center rounded-xl border border-white/70 bg-transparent px-8 text-base font-semibold text-white transition-colors hover:bg-white/10 hover:shadow-[0_8px_24px_rgba(255,255,255,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
+          >
+            Contactez-nous
+          </motion.a>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
           <motion.div
-            variants={fadeIn("up", 0.14)}
-            className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2"
           >
-            <a
-              href="#services"
-              className="inline-flex h-12 min-w-[220px] items-center justify-center rounded-lg bg-[rgb(192,122,100)] px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[rgb(169,101,81)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
-            >
-              Tous les services
-            </a>
-            <a
-              href="#demo"
-              className="inline-flex h-12 min-w-[220px] items-center justify-center rounded-lg border border-white/70 bg-transparent px-8 text-base font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
-            >
-              Contactez-nous
-            </a>
+            <span className="text-xs font-medium tracking-wider text-white/50">SCROLL</span>
+            <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
           </motion.div>
         </motion.div>
       </div>
