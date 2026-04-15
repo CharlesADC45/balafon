@@ -1,91 +1,178 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { fadeIn, staggerChildren } from "../animations/fadeIn";
 
-const features = [
+type Feature = {
+  title: string;
+  description: string;
+  icon: "flow" | "speed" | "stack" | "shield";
+};
+
+const features: Feature[] = [
   {
     title: "Simplicité",
     description:
-      "Une expérience claire, des vues utiles, des actions rapides. Vos équipes restent concentrées sur l’essentiel.",
+      "Une expérience claire, des vues utiles et des actions rapides. Vos équipes gardent le contrôle sans complexité inutile.",
+    icon: "flow",
   },
   {
     title: "Performance",
     description:
-      "Réduisez les heures perdues à gérer des incidents grâce à une supervision proactive et des indicateurs fiables.",
+      "Réduisez les heures perdues à gérer les incidents grâce à une supervision proactive et des indicateurs fiables.",
+    icon: "speed",
   },
   {
     title: "Centralisation",
     description:
-      "Unifiez la visibilité sur postes, serveurs, applications, réseau et cloud — sans multiplier les outils.",
+      "Unifiez la visibilité sur postes, serveurs, applications, réseau et cloud depuis une seule plateforme BALAFON.",
+    icon: "stack",
   },
   {
     title: "Sécurité",
     description:
       "Contrôles, alertes et bonnes pratiques pour sécuriser vos environnements et mieux anticiper les risques.",
+    icon: "shield",
   },
 ];
+
+function FeatureIcon({ name }: { name: Feature["icon"] }) {
+  const common = "stroke-current";
+
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden className="h-8 w-8">
+      {name === "flow" ? (
+        <g className={common} fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 16h9c5 0 7 3 7 8s2 8 8 8" />
+          <path d="M12 32h9c3.5 0 5.5-1.6 6.5-4" />
+          <path d="M34 14l4 4-4 4" />
+          <path d="M34 26l4 4-4 4" />
+          <circle cx="12" cy="16" r="3" />
+          <circle cx="12" cy="32" r="3" />
+        </g>
+      ) : null}
+      {name === "speed" ? (
+        <g className={common} fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M10 29a14 14 0 1 1 28 0" />
+          <path d="M24 29l9-11" />
+          <path d="M15 29h18" />
+          <path d="M15 20l3 3" />
+          <path d="M33 20l-3 3" />
+        </g>
+      ) : null}
+      {name === "stack" ? (
+        <g className={common} fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M24 8 39 16 24 24 9 16Z" />
+          <path d="M39 24 24 32 9 24" />
+          <path d="M39 32 24 40 9 32" />
+        </g>
+      ) : null}
+      {name === "shield" ? (
+        <g className={common} fill="none" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M24 7 38 13v10c0 9-5.4 15.2-14 18-8.6-2.8-14-9-14-18V13Z" />
+          <path d="m18 24 4 4 8-9" />
+        </g>
+      ) : null}
+    </svg>
+  );
+}
+
+function getCardDelay(idx: number) {
+  return 0.15 + idx * 0.12;
+}
 
 export default function Features() {
   return (
     <section
       id="pourquoi"
-      className="border-y border-zinc-200/70 bg-gradient-to-b from-zinc-50 via-zinc-50 to-zinc-100 py-16 dark:border-zinc-800/70 dark:bg-[radial-gradient(circle_at_top,_#020617,_#020617_40%,_#020617_60%)] sm:py-20"
+      className="relative overflow-hidden border-y border-zinc-200/70 bg-[linear-gradient(180deg,_#f8fbfb_0%,_#eef6f5_48%,_#ffffff_100%)] py-18 sm:py-24"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="pointer-events-none absolute left-[-8rem] top-20 h-72 w-72 rounded-full bg-[rgb(15,110,110)]/10 blur-3xl" />
+      <div className="pointer-events-none absolute right-[-7rem] bottom-10 h-80 w-80 rounded-full bg-accent/12 blur-3xl" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
-          variants={staggerChildren(0.10)}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
         >
           <motion.p
             variants={fadeIn("up", 0)}
-            className="text-sm font-semibold tracking-wide text-[rgb(15,110,110)]"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="text-lg font-semibold tracking-[0.14em] text-brand sm:text-xl"
           >
-            Pourquoi BALAFON
+            Pourquoi BALAFON ?
           </motion.p>
           <motion.h2
             variants={fadeIn("up", 0.05)}
-            className="mt-3 text-balance text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-4xl"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mt-4 max-w-5xl text-balance text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl"
           >
-            Gagnez du temps, économisez de l’argent, optimisez pour l’avenir
+            Gagnez du temps, économisez de l&apos;argent et pilotez votre IT avec plus de visibilité.
           </motion.h2>
           <motion.p
-            variants={fadeIn("up", 0.10)}
-            className="mt-4 max-w-2xl text-pretty text-lg leading-8 text-zinc-600 dark:text-zinc-300"
+            variants={fadeIn("up", 0.1)}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="mt-5 max-w-3xl text-pretty text-lg leading-8 text-zinc-600"
           >
-            Une meilleure gestion signifie moins de temps d’arrêt, moins de problèmes et donc moins
-            de coûts cachés — avec une approche modulaire et orientée résultats.
+            BALAFON rassemble les signaux critiques de votre système d&apos;information pour aider vos équipes à observer, comprendre et agir plus vite.
           </motion.p>
 
-          <motion.div
-            variants={fadeIn("up", 0.12)}
-            className="mt-10 grid gap-4 sm:grid-cols-2"
-          >
-            {features.map((f, idx) => (
+          <div className="mt-16 grid gap-x-6 gap-y-14 sm:grid-cols-2">
+            {features.map((feature, idx) => (
               <motion.article
-                key={f.title}
-                variants={fadeIn("up", idx * 0.03)}
-                className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950"
+                key={feature.title}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: getCardDelay(idx), ease: "easeOut" }}
+                whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+                className="group relative rounded-3xl border border-brand/12 bg-white/86 p-8 pt-12 shadow-[0_18px_55px_rgba(15,23,42,0.08)] backdrop-blur-sm transition-shadow duration-300 hover:border-brand/25 hover:shadow-[0_24px_65px_rgba(15,110,110,0.14)]"
               >
-                <div className="flex items-start gap-3">
-                  <div className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[rgb(192,122,100)]" />
-                  <div>
-                    <h3 className="text-lg font-semibold text-zinc-950 dark:text-zinc-50">
-                      {f.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
-                      {f.description}
-                    </p>
+                {/* Icon box with hover animation */}
+                <motion.div
+                  className="absolute -top-8 left-8 flex h-16 w-16 items-center justify-center rounded-2xl border border-brand/18 bg-[linear-gradient(135deg,_#eff9f8,_#ffffff)] text-brand shadow-[0_16px_35px_rgba(15,110,110,0.14)]"
+                  whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <div className="absolute inset-2 rounded-xl bg-[rgb(196,188,150)]/16" />
+                  <div className="relative">
+                    <FeatureIcon name={feature.icon} />
                   </div>
-                </div>
+                </motion.div>
+
+                {/* Accent dot with pulse */}
+                <motion.div
+                  className="absolute right-7 top-7 h-2.5 w-2.5 rounded-full bg-accent"
+                  animate={{ scale: [1, 1.3, 1], opacity: [1, 0.6, 1] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.5 }}
+                />
+
+                <h3 className="text-2xl font-semibold tracking-tight text-zinc-950">
+                  {feature.title}
+                </h3>
+                <p className="mt-4 text-lg leading-8 text-zinc-600">
+                  {feature.description}
+                </p>
+
+                {/* Animated bottom line on hover */}
+                <motion.div
+                  className="absolute bottom-0 left-8 right-8 h-[2px] origin-left bg-gradient-to-r from-brand to-accent"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                />
               </motion.article>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>
   );
 }
-

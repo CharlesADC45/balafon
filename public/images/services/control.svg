@@ -1,0 +1,9 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#071b28"/><stop offset="1" stop-color="#164f75"/></linearGradient></defs>
+  <rect width="720" height="320" fill="url(#g)"/>
+  <rect x="82" y="84" width="242" height="166" rx="22" fill="#fff" opacity=".13"/>
+  <rect x="370" y="84" width="258" height="166" rx="22" fill="#fff" opacity=".1"/>
+  <g fill="none" stroke="#fff" stroke-width="5" opacity=".88"><path d="M122 132h160M122 178h160M122 224h110"/><path d="M398 184l52 42 120-114"/></g>
+  <circle cx="572" cy="112" r="30" fill="#c07a64" opacity=".9"/>
+  <text x="44" y="72" fill="#fff" font-family="Arial" font-size="30" font-weight="700">Contrôle</text>
+</svg>

@@ -10,16 +10,16 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: rgb(var(--brand));
+  --color-brand-light: rgb(var(--brand) / 0.1);
+  --color-brand-hover: rgb(12, 92, 92);
+  --color-accent: rgb(var(--accent));
+  --color-accent-hover: rgb(169, 101, 81);
+  --font-sans: var(--font-jakarta);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Dark mode desactive — identite visuelle BALAFON toujours claire */
 
 body {
   background: var(--background);
@@ -31,6 +31,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 ::selection {

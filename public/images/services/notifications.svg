@@ -1,0 +1,9 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#071b28"/><stop offset="1" stop-color="#2c6480"/></linearGradient></defs>
+  <rect width="720" height="320" fill="url(#g)"/>
+  <rect x="118" y="92" width="270" height="132" rx="24" fill="#fff" opacity=".16"/>
+  <rect x="286" y="134" width="270" height="132" rx="24" fill="#fff" opacity=".12"/>
+  <path d="M158 138h170M158 174h116M326 182h170M326 218h112" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+  <circle cx="552" cy="106" r="36" fill="#c07a64"/><path d="M552 86v30" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="552" cy="130" r="5" fill="#fff"/>
+  <text x="44" y="72" fill="#fff" font-family="Arial" font-size="30" font-weight="700">Notifications</text>
+</svg>

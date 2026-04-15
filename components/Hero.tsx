@@ -1,141 +1,206 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { fadeIn, staggerChildren } from "../animations/fadeIn";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+
+const wordReveal: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.06, delayChildren: 0.3 } },
+};
+
+const wordVariant: Variants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const fadeUp = (delay = 0): Variants => ({
+  hidden: { opacity: 0, y: 24 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  },
+});
+
+function SplitWords({ text, className }: { text: string; className?: string }) {
+  return (
+    <motion.h1 variants={wordReveal} initial="hidden" animate="show" className={className}>
+      {text.split(" ").map((word, i) => (
+        <motion.span key={i} variants={wordVariant} className="inline-block mr-[0.28em]">
+          {word}
+        </motion.span>
+      ))}
+    </motion.h1>
+  );
+}
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10">
+    <section
+      id="top"
+      className="relative overflow-hidden bg-[linear-gradient(180deg,_#083c45_0%,_#0a525c_46%,_#072f36_100%)]"
+    >
+      {/* Background effects */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,_rgb(255,255,255,0.14),_transparent_44%)]" />
+
         <motion.div
           aria-hidden
-          className="absolute -left-40 -top-32 h-80 w-80 rounded-full bg-[rgb(15,110,110)]/10 blur-3xl"
-          animate={{ x: [-10, 10, -10], y: [0, 12, 0] }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-1/2 top-[-24rem] h-[46rem] w-[46rem] -translate-x-1/2 rounded-full bg-[rgb(15,110,110)]/55 blur-[120px]"
+          animate={
+            shouldReduceMotion
+              ? { opacity: 0.55 }
+              : { scale: [1, 1.08, 1], opacity: [0.45, 0.72, 0.45] }
+          }
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
+
         <motion.div
           aria-hidden
-          className="absolute -bottom-32 -right-40 h-80 w-80 rounded-full bg-[rgb(192,122,100)]/12 blur-3xl"
-          animate={{ x: [8, -8, 8], y: [0, -10, 0] }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-[-12rem] top-28 h-[22rem] w-[22rem] rounded-full bg-accent/24 blur-[90px]"
+          animate={shouldReduceMotion ? { opacity: 0.35 } : { x: [-18, 16, -18], y: [0, 12, 0] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <motion.div
+          aria-hidden
+          className="absolute bottom-[-7rem] right-[-8rem] h-[20rem] w-[20rem] rounded-full bg-[rgb(28,207,196)]/24 blur-[90px]"
+          animate={shouldReduceMotion ? { opacity: 0.3 } : { x: [12, -10, 12], y: [0, -12, 0] }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+
+        <motion.svg
+          aria-hidden
+          viewBox="0 0 1400 820"
+          className="absolute inset-0 h-full w-full"
+          preserveAspectRatio="xMidYMid slice"
+        >
+          <motion.g
+            fill="none"
+            stroke="rgb(255 255 255 / 0.2)"
+            strokeWidth="1.5"
+            animate={
+              shouldReduceMotion
+                ? { opacity: 0.25 }
+                : { x: [0, -70, 0], y: [0, 28, 0], opacity: [0.2, 0.35, 0.2] }
+            }
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <path d="M-130 140 230 -20 590 140 230 300Z" />
+            <path d="M230 300 590 140 950 300 590 460Z" />
+            <path d="M590 460 950 300 1310 460 950 620Z" />
+            <path d="M-130 460 230 300 590 460 230 620Z" />
+            <path d="M230 620 590 460 950 620 590 780Z" />
+            <path d="M230 -20V300M590 140V460M950 300V620M590 460V780" />
+          </motion.g>
+
+          <motion.g
+            fill="none"
+            stroke="rgb(28 207 196 / 0.24)"
+            strokeWidth="1.4"
+            animate={
+              shouldReduceMotion
+                ? { opacity: 0.2 }
+                : { x: [0, 60, 0], y: [0, -20, 0], opacity: [0.18, 0.3, 0.18] }
+            }
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <path d="M290 190 650 30 1010 190 650 350Z" />
+            <path d="M650 350 1010 190 1370 350 1010 510Z" />
+            <path d="M290 510 650 350 1010 510 650 670Z" />
+          </motion.g>
+        </motion.svg>
+
+        <motion.div
+          aria-hidden
+          className="absolute inset-y-0 left-[-35%] w-[42%] bg-[linear-gradient(90deg,_transparent,_rgb(255,255,255,0.16),_transparent)] blur-2xl"
+          animate={shouldReduceMotion ? { opacity: 0 } : { x: [0, 2400] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
         />
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-2 lg:gap-14">
-        <motion.div
-          variants={staggerChildren(0.10)}
+      {/* Content */}
+      <div className="relative mx-auto flex min-h-[85vh] max-w-5xl flex-col items-center justify-center px-4 py-24 text-center sm:px-6 sm:py-28">
+
+        {/* Title with word-by-word reveal */}
+        {shouldReduceMotion ? (
+          <h1 className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl">
+            BALAFON centralise la supervision de votre SI pour anticiper les incidents et sécuriser vos opérations.
+          </h1>
+        ) : (
+          <SplitWords
+            text="BALAFON centralise la supervision de votre SI pour anticiper les incidents et sécuriser vos opérations."
+            className="mx-auto mt-6 max-w-4xl text-balance text-4xl font-semibold tracking-tight text-white sm:text-5xl md:text-6xl"
+          />
+        )}
+
+        {/* Subtitle */}
+        <motion.p
+          variants={fadeUp(1.2)}
           initial="hidden"
           animate="show"
-          className="flex flex-col items-start"
+          className="mx-auto mt-6 max-w-4xl text-pretty text-lg leading-8 text-white/85 sm:text-xl"
         >
-          <motion.p
-            variants={fadeIn("up", 0)}
-            className="inline-flex items-center rounded-full border border-zinc-200 bg-white/70 px-3 py-1 text-xs font-semibold text-zinc-700 shadow-sm backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/40 dark:text-zinc-300"
-          >
-            Solution digitale professionnelle • Observabilité & gestion IT
-          </motion.p>
+          Avec BALAFON, vos équipes IT suivent en temps réel serveurs, réseau, applications et services critiques, reçoivent des alertes intelligentes et agissent plus vite pour garantir la continuité de service.
+        </motion.p>
 
-          <motion.h1
-            variants={fadeIn("up", 0.05)}
-            className="mt-5 text-balance text-4xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl"
+        {/* CTA buttons */}
+        <motion.div
+          variants={fadeUp(1.5)}
+          initial="hidden"
+          animate="show"
+          className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <motion.a
+            href="#services"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="group relative inline-flex h-12 min-w-[220px] items-center justify-center overflow-hidden rounded-xl bg-accent px-8 text-base font-semibold text-white shadow-sm transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
           >
-            <span className="inline-flex flex-wrap items-baseline gap-x-2">
-              <span className="relative inline-flex">
-                <span className="text-balance">
-                  Révolutionnez votre gestion informatique avec BALAFON
-                </span>
-                <motion.span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-y-0 left-0 bg-white dark:bg-zinc-950"
-                  initial={{ width: "100%" }}
-                  animate={{ width: "0%" }}
-                  transition={{
-                    duration: 2.8,
-                    ease: "easeInOut",
-                    delay: 0.2,
-                  }}
-                />
-              </span>
-              <motion.span
-                aria-hidden
-                className="ml-1 h-6 w-[1px] self-stretch bg-[rgb(15,110,110)]"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{
-                  duration: 0.9,
-                  repeat: Infinity,
-                  repeatDelay: 0.2,
-                }}
-              />
-            </span>
-          </motion.h1>
-
-          <motion.p
-            variants={fadeIn("up", 0.10)}
-            className="mt-5 max-w-xl text-pretty text-lg leading-8 text-zinc-600 dark:text-zinc-300"
+            <motion.span
+              className="absolute inset-0 bg-[linear-gradient(90deg,_transparent,_rgba(255,255,255,0.2),_transparent)]"
+              animate={{ x: ["-100%", "200%"] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 2 }}
+            />
+            <span className="relative">Tous les services</span>
+          </motion.a>
+          <motion.a
+            href="#demo"
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="inline-flex h-12 min-w-[220px] items-center justify-center rounded-xl border border-white/70 bg-transparent px-8 text-base font-semibold text-white transition-colors hover:bg-white/10 hover:shadow-[0_8px_24px_rgba(255,255,255,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(10,63,74)]"
           >
-            Détection avancée, surveillance en temps réel, contrôle personnalisé et alertes
-            instantanées — sur une plateforme simple, moderne et performante.
-          </motion.p>
-
-          <motion.div
-            variants={fadeIn("up", 0.15)}
-            className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
-          >
-            <a
-              href="#demo"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-[rgb(15,110,110)] px-6 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-[rgb(12,92,92)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(15,110,110)] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-zinc-950"
-            >
-              Demander une démo
-            </a>
-            <a
-              href="#produits"
-              className="inline-flex h-11 items-center justify-center rounded-full border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-900 transition-colors hover:bg-[#a67b6b] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-[#a67b6b] dark:hover:text-white dark:focus-visible:ring-zinc-700 dark:focus-visible:ring-offset-zinc-950"
-            >
-              Voir les produits
-            </a>
-          </motion.div>
-
-          <motion.div
-            variants={fadeIn("up", 0.18)}
-            className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-zinc-600 dark:text-zinc-300"
-          >
-            <span className="inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[rgb(15,110,110)]" />
-              Clair en moins de 5 secondes
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[rgb(192,122,100)]" />
-              Optimisé performance & SEO
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-zinc-400" />
-              Prêt pour évoluer vers un SaaS
-            </span>
-          </motion.div>
+            Contactez-nous
+          </motion.a>
         </motion.div>
 
+        {/* Scroll indicator */}
         <motion.div
-          initial="hidden"
-          animate="show"
-          variants={fadeIn("left", 0.08)}
-          className="relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.2, duration: 0.8 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-[rgb(15,110,110)]/10 to-[rgb(192,122,100)]/10 blur-2xl" />
-          <div className="rounded-3xl border border-zinc-200 bg-white p-2 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-            <Image
-              src="/images/hero-dashboard.svg"
-              alt="Aperçu du tableau de bord BALAFON"
-              width={1200}
-              height={800}
-              priority
-              className="h-auto w-full rounded-2xl"
-            />
-          </div>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+            className="flex flex-col items-center gap-2"
+          >
+            <span className="text-xs font-medium tracking-wider text-white/50">SCROLL</span>
+            <svg viewBox="0 0 24 24" className="h-5 w-5 text-white/40" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+            </svg>
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
-
